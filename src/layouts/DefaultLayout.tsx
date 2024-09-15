@@ -11,6 +11,7 @@ import Feed from '@/pages/Feed'
 import ShoppingCart from '@/pages/ShoppingCart'
 import NotFound from '@/pages/NotFound'
 import Settings from '@/pages/Settings'
+import User from '@/pages/User'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
     const { isAuthenticated } = useAuth()
@@ -38,6 +39,7 @@ export default function DefaultLayout() {
                         <Route path='/feed' element={<Feed/>}/>
                         <Route path='/shopping-cart' element={<ShoppingCart/>}/>
                         <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/user' element={<User/>}/>
                     </Route>
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
