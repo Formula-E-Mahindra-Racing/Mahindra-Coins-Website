@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom"
-import { Button } from "./components/ui/button"
+import SideBar from "./components/SideBar"
 
 function App() {
     return (
-        <>
-            <Button className="border border-red-400">aoba</Button>
+        <main className="flex">
+            <SideBar />
             <Outlet />
-        </>
+        </main>
     )
 }
 
