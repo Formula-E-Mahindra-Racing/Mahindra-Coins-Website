@@ -7,33 +7,28 @@ export const SIDEBAR = [
         icon: Home,
     },
     {
-        link: '/dashboard',
+        link: 'dashboard',
         text: 'Dashboard',
         icon: LineChart,
     },
     {
-        link: '/dashboard',
-        text: 'Dashboard',
-        icon: LineChart,
-    },
-    {
-        link: '/users',
-        text: 'Users',
+        link: 'users',
+        text: 'Feed',
         icon: Users2,
     },
     {
-        link: '/shopping-cart',
+        link: 'shopping-cart',
         text: 'Shopping Cart',
         icon: ShoppingCart,
     },
     {
-        link: '/settings',
+        link: 'settings',
         text: 'Settings',
         icon: Settings,
     },
     {
-        link: '/users',
-        text: 'Users',
+        link: 'user',
+        text: 'User',
         icon: User2,
     },
 ]

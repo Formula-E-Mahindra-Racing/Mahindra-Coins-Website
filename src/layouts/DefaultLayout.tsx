@@ -4,8 +4,8 @@ import { ReactNode } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { Login } from '@/pages/Login'
 import App from '@/App'
-import Store from '@/pages/Store'
 import { SignUp } from '@/pages/SignUp'
+import Home from '@/pages/Home'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
     const { isAuthenticated } = useAuth()
@@ -28,7 +28,7 @@ export default function DefaultLayout() {
                             </ProtectedRoute>
                         }
                     >
-                        <Route path='/store' element={<Store/>}/>
+                        <Route path='/home' element={<Home/>}/>
                     </Route>
                 </Routes>
             </AuthProvider>
