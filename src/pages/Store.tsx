@@ -29,13 +29,13 @@ export default function Store() {
         setCart([...cart, product])
     }
 
-    const removeFromCart = (productId: number) => {
-        setCart(cart.filter(item => item.id !== productId))
-    }
+    // const removeFromCart = (productId: number) => {
+    //     setCart(cart.filter(item => item.id !== productId))
+    // }
 
     const filteredProducts = filter === "All" ? products : products.filter(product => product.category === filter)
 
-    const totalMC = cart.reduce((sum, item) => sum + item.price, 0)
+    // const totalMC = cart.reduce((sum, item) => sum + item.price, 0)
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -50,7 +50,7 @@ export default function Store() {
             </header>
             <main className="flex-1">
                 <section className="w-full py-12 md:py-24 lg:py-32">
-                    <div className="container px-4 md:px-6">
+                    <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
                         <div className="w-full">
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-2xl font-bold">Our Products</h2>
