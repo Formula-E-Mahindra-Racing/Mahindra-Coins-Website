@@ -2,7 +2,7 @@ import { Home, Settings, ShoppingCart, ShoppingBag, User2, Users2 } from "lucide
 
 export const SIDEBAR = [
     {
-        link: '/home',
+        link: '/',
         text: 'Home',
         icon: Home,
     },

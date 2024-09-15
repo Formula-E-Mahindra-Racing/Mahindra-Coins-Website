@@ -33,7 +33,7 @@ export default function DefaultLayout() {
                             </ProtectedRoute>
                         }
                     >
-                        <Route path='/home' element={<Home/>}/>
+                        <Route index path='/' element={<Home/>}/>
                         <Route path='/store' element={<Store/>}/>
                         <Route path='/feed' element={<Feed/>}/>
                         <Route path='/shopping-cart' element={<ShoppingCart/>}/>
