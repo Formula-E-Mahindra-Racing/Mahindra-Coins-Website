@@ -1,4 +1,4 @@
-import { Home, LineChart, Settings, ShoppingCart, User2, Users2 } from "lucide-react";
+import { Home, Settings, ShoppingCart, ShoppingBag, User2, Users2 } from "lucide-react";
 
 export const SIDEBAR = [
     {
@@ -7,12 +7,12 @@ export const SIDEBAR = [
         icon: Home,
     },
     {
-        link: 'dashboard',
-        text: 'Dashboard',
-        icon: LineChart,
+        link: '/store',
+        text: 'Store',
+        icon: ShoppingBag,
     },
     {
-        link: 'users',
+        link: 'feed',
         text: 'Feed',
         icon: Users2,
     },

@@ -8,7 +8,7 @@ function App() {
             <section className="sm:mr-[3.5rem]">
                 <SideBar />
             </section>
-            <section className="flex-1">
+            <section className="flex-1 flex flex-col justify-between min-h-dvh">
                 <Outlet />
                 <Footer />
             </section>
