@@ -1,17 +1,21 @@
-import App from '@/App'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import IsLoggedLayout from './IsLoggedLayout'
+import { AuthProvider } from '@/contexts/LoginContext'
 import { Login } from '@/pages/Login'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { SignUp } from '@/pages/SignUp'
 
 export default function DefaultLayout() {
+
     return (
-        <main>
-            <BrowserRouter>
+        <Router>
+            <AuthProvider>
                 <Routes>
-                <Route index path='/' element={<App/>}/>
-                <Route path='/login' element={<Login/>}/>
+                    <Route index path='/' element={<IsLoggedLayout/>} />
+                    <Route path='/login' element={<Login/>} />
+                    <Route path='/sign-up' element={<SignUp/>} />
                 </Routes>
-            </BrowserRouter>
-        </main>
+            </AuthProvider>
+        </Router>
     )
 }
 
