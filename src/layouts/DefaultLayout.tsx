@@ -1,8 +1,16 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import IsLoggedLayout from './IsLoggedLayout'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { AuthProvider } from '@/contexts/LoginContext'
+import { ReactNode } from 'react'
+import { useAuth } from '@/hooks/useAuth'
 import { Login } from '@/pages/Login'
+import App from '@/App'
+import Store from '@/pages/Store'
 import { SignUp } from '@/pages/SignUp'
+
+function ProtectedRoute({ children }: { children: ReactNode }) {
+    const { isAuthenticated } = useAuth()
+    return isAuthenticated ? children : <Navigate to='/login' />
+}
 
 export default function DefaultLayout() {
 
@@ -10,9 +18,18 @@ export default function DefaultLayout() {
         <Router>
             <AuthProvider>
                 <Routes>
-                    <Route index path='/' element={<IsLoggedLayout/>} />
-                    <Route path='/login' element={<Login/>} />
-                    <Route path='/sign-up' element={<SignUp/>} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route
+                        path="/"
+                        element={
+                            <ProtectedRoute>
+                                <App />
+                            </ProtectedRoute>
+                        }
+                    >
+                        <Route path='/store' element={<Store/>}/>
+                    </Route>
                 </Routes>
             </AuthProvider>
         </Router>

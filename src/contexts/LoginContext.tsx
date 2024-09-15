@@ -1,5 +1,5 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 interface AuthContext {
     isAuthenticated: boolean
@@ -9,14 +9,14 @@ interface AuthContext {
     logout: () => void
 }
 
-export const AuthContext = createContext({} as AuthContext);
+export const AuthContext = createContext({} as AuthContext)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const location = useLocation();
+    const [isAuthenticated, setIsAuthenticated] = useState(true)
+    const location = useLocation()
 
-    const login = () => setIsAuthenticated(true);
-    const logout = () => setIsAuthenticated(false);
+    const login = () => setIsAuthenticated(true)
+    const logout = () => setIsAuthenticated(false)
 
     return (
         <AuthContext.Provider value={{
