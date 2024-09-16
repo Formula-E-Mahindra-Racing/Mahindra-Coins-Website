@@ -50,8 +50,8 @@ export default function ResponsiveSideBar() {
             </DialogTrigger>
             <DialogPortal>
                 <DialogTitle className='sr-only'>Chose to go to users page or settings page</DialogTitle>
-                <DialogContent className="bg-transparent px-8 border-none absolute left-[calc(100dvw-3.1rem)] top-[calc(100dvh-8rem)] w-fit h-fit sm:max-w-[425px]">
-                    <div className="grid gap-6">
+                <DialogContent data-state={open ? 'open' : 'closed'} className="bg-transparent border-none fixed bottom-[5rem] right-[2.4rem] w-fit h-fit sm:max-w-[425px]">
+                    <div className="grid gap-8">
                         <Button asChild>
                             <Link
                                 to='settings'
