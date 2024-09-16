@@ -2,7 +2,7 @@ import { ElementType, useState } from 'react';
 import { SIDEBAR } from "@/constants/SideBar";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "./ui/tooltip";
 import { Link } from "react-router-dom";
-import { Settings, ChevronUp, ChevronDown, User } from "lucide-react";
+import { Settings, ChevronDown, User } from "lucide-react";
 import { Dialog, DialogContent, DialogPortal, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
