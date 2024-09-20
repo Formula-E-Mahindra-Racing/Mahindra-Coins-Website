@@ -56,7 +56,7 @@ export default function User() {
   const [userCoins] = useState(3500)
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="px-4 container mx-auto py-10">
       <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
         <div className="space-y-6">
           <Card>

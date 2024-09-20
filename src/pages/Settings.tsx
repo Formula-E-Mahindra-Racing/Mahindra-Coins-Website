@@ -15,7 +15,7 @@ export default function Settings() {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true)
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="px-4 container mx-auto py-10">
       <h1 className="text-3xl font-bold mb-6">Settings</h1>
       <Tabs defaultValue="account" className="space-y-4">
         <TabsList>
