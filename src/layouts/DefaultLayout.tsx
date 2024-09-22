@@ -10,7 +10,7 @@ import Store from '@/pages/Store'
 import Feed from '@/pages/Feed'
 import ShoppingCart from '@/pages/ShoppingCart'
 import NotFound from '@/pages/NotFound'
-import Settings from '@/pages/Settings'
+import Settings from '@/pages/Settings/Settings'
 import User from '@/pages/User'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {

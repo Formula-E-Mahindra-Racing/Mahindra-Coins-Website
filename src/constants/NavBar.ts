@@ -1,6 +1,6 @@
 import { Home, Settings, ShoppingCart, ShoppingBag, User2, Users2 } from "lucide-react";
 
-export const SIDEBAR = [
+export const NAVBAR = [
     {
         link: '/',
         text: 'Home',

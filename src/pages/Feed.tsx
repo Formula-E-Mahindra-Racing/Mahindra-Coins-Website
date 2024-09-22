@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { ThumbsUp, MessageCircle, Share2 } from "lucide-react"
+import { SubHeader } from '@/components/sub-header/SubHeader'
 
 type Post = {
     id: number
@@ -115,11 +116,11 @@ export default function MahindraFeed() {
 
     return (
         <div className="px-4 mt-12 min-h-screen bg-background">
-            <header className="w-full border-b bg-background container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0 mx-auto">
-                <div className="flex gap-6 md:gap-10">
-                    <h1 className="text-2xl font-bold">Mahindra Racing Feed</h1>
-                </div>
-            </header>
+            <SubHeader.Root>
+                <SubHeader.Wrapper>
+                    <SubHeader.Title>Mahindra Racing Feed</SubHeader.Title>
+                </SubHeader.Wrapper>
+            </SubHeader.Root>
             <main className="container mx-auto py-6">
                 <div className="grid gap-6 md:grid-cols-[1fr_300px]">
                     <div className="space-y-6">

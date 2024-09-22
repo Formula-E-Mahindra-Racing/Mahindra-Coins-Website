@@ -1,12 +1,13 @@
 import { ElementType, useState } from 'react';
-import { SIDEBAR } from "@/constants/SideBar";
+import { NAVBAR } from "@/constants/NavBar";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "./ui/tooltip";
 import { Link } from "react-router-dom";
 import { Settings, ChevronDown, User } from "lucide-react";
 import { Dialog, DialogContent, DialogPortal, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import List from './utils/List';
 
-export default function ResponsiveSideBar() {
+export default function NavBar() {
     const [open, setOpen] = useState(false);
 
     const NavItem = ({ text, link, icon: Icon }: { text: string, link: string, icon: ElementType }) => (
@@ -28,14 +29,16 @@ export default function ResponsiveSideBar() {
     const SideBarContent = () => (
         <>
             <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-                {SIDEBAR.slice(0, -2).map((item, i) => (
-                    <NavItem key={i} {...item} />
-                ))}
+                <List
+                    items={NAVBAR.slice(0, -2)}
+                    render={(item, i) => <NavItem key={i} {...item} />}
+                />
             </nav>
             <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-                {SIDEBAR.slice(-2).map((item, i) => (
-                    <NavItem key={i} {...item} />
-                ))}
+                <List
+                    items={NAVBAR.slice(-2)}
+                    render={(item, i) => <NavItem key={i} {...item} />}
+                />
             </nav>
         </>
     );
@@ -87,9 +90,11 @@ export default function ResponsiveSideBar() {
 
             {/* Mobile Bottom Navigation */}
             <nav className="fixed bottom-0 left-0 right-0 z-10 flex justify-around border-t bg-background p-2 sm:hidden">
-                {SIDEBAR.slice(0, -2).map((item, i) => (
-                    <NavItem key={i} {...item} />
-                ))}
+                <List
+                    items={NAVBAR.slice(0, -2)}
+                    render={(item, i) => <NavItem key={i} {...item} />
+                    }
+                />
                 <UserModal />
             </nav>
         </TooltipProvider>

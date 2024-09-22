@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Trash2, MinusCircle, PlusCircle } from "lucide-react"
+import { SubHeader } from '@/components/sub-header/SubHeader'
 
 type CartItem = {
     id: number
@@ -37,18 +38,21 @@ export default function ShoppingCart() {
     const total = subtotal + shipping
 
     return (
-        <div className="mt-16 px-4 min-h-screen bg-background">
-            <header className="w-full border-b bg-background">
-                <div className="container flex h-16 items-center">
-                    <h1 className="text-2xl font-bold">Your Cart</h1>
-                </div>
-            </header>
+        <div className="mt-12 px-4 min-h-screen bg-background">
+
+            <SubHeader.Root>
+                <SubHeader.Wrapper>
+                    <SubHeader.Title>Your Cart</SubHeader.Title>
+                </SubHeader.Wrapper>
+            </SubHeader.Root>
+
             <main className="container mx-auto py-10">
                 <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
                     <div>
                         {cartItems.length === 0 ? (
                             <Card>
-                                <CardContent className="pt-6 text-center">
+                                <
+                                CardContent className="pt-6 text-center">
                                     <p className="text-muted-foreground">Your cart is empty</p>
                                 </CardContent>
                             </Card>
@@ -59,7 +63,7 @@ export default function ShoppingCart() {
                                 </CardHeader>
                                 <CardContent className="grid gap-6">
                                     {cartItems.map((item) => (
-                                        <div key={item.id} className="flex items-center space-x-4">
+                                        <div key={item.id} className="flex flex-wrap items-center space-x-4">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}

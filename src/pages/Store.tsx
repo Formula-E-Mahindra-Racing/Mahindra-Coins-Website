@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ShoppingCart } from "lucide-react"
+import { SubHeader } from '@/components/sub-header/SubHeader'
 
 type Product = {
     id: number
@@ -38,24 +39,25 @@ export default function Store() {
     // const totalMC = cart.reduce((sum, item) => sum + item.price, 0)
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <header className="px-4 lg:px-6 h-14 flex items-center">
-                <h1 className="text-lg font-bold">Mahindra Formula E Store</h1>
-                <nav className="ml-auto flex gap-4 sm:gap-6">
-                    <Button variant="outline" className="flex items-center gap-2">
+        <div className="px-4 mt-12 min-h-screen bg-background">
+
+            <SubHeader.Root>
+                <SubHeader.Wrapper>
+                    <SubHeader.Title>Mahindra Racing Store</SubHeader.Title>
+                    <Button variant="outline" className="ml-auto flex items-center gap-2">
                         <ShoppingCart className="h-4 w-4" />
                         <span>{cart.length}</span>
                     </Button>
-                </nav>
-            </header>
+                </SubHeader.Wrapper>
+            </SubHeader.Root>
+
             <main className="flex-1">
                 <section className="w-full py-12 md:py-24 lg:py-32">
                     <div className="mx-auto max-w-screen-2xl px-4 md:px-6">
                         <div className="w-full">
-                            <div className="flex justify-between items-center mb-6">
-                                <h2 className="text-2xl font-bold">Our Products</h2>
+                            <div className="flex flex-wrap gap-3 justify-between items-center mb-6">
                                 <Select onValueChange={(value) => setFilter(value)}>
-                                    <SelectTrigger className="w-[180px]">
+                                    <SelectTrigger className="w-fullsm:w-[180px]">
                                         <SelectValue placeholder="Filter by category" />
                                     </SelectTrigger>
                                     <SelectContent>
