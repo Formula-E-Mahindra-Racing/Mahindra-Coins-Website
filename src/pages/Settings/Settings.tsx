@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from 'react'
+import { ReactNode } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SubHeader } from '@/components/sub-header/SubHeader'
 import { ContentWrapper } from '@/components/content-wrapper/ContentWrapper'
