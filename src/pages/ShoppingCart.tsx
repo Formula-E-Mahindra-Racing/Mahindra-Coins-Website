@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Trash2, MinusCircle, PlusCircle } from "lucide-react"
+import { SubHeader } from '@/components/sub-header/SubHeader'
 
 type CartItem = {
     id: number
@@ -13,36 +14,49 @@ type CartItem = {
     image: string
 }
 
-const initialCartItems: CartItem[] = [
-    { id: 1, name: "Mahindra Racing Cap", price: 250, quantity: 2, image: "/placeholder.svg?height=80&width=80" },
-    { id: 2, name: "Formula E T-Shirt", price: 500, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
-    { id: 3, name: "Mahindra Hoodie", price: 750, quantity: 1, image: "/placeholder.svg?height=80&width=80" },
-]
-
 export default function ShoppingCart() {
-    const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems)
+    const [cartItems, setCartItems] = useState<CartItem[]>([])
+
+    const [shouldUpdateFlag, setShouldUpdateFlag] = useState(false)
+
+    useEffect(() => {
+        const savedCart = localStorage.getItem('cart')
+        if (savedCart) {
+            setCartItems(JSON.parse(savedCart))
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!shouldUpdateFlag) return
+        localStorage.setItem('cart', JSON.stringify(cartItems))
+    }, [cartItems, shouldUpdateFlag])
 
     const updateQuantity = (id: number, newQuantity: number) => {
-        setCartItems(cartItems.map(item =>
-            item.id === id ? { ...item, quantity: Math.max(0, newQuantity) } : item
-        ).filter(item => item.quantity > 0))
+        setCartItems(prevItems =>
+            prevItems.map(item =>
+                item.id === id ? { ...item, quantity: Math.max(0, newQuantity) } : item
+            ).filter(item => item.quantity > 0)
+        )
+        setShouldUpdateFlag(true)
     }
 
     const removeItem = (id: number) => {
-        setCartItems(cartItems.filter(item => item.id !== id))
+        setCartItems(prevItems => prevItems.filter(item => item.id !== id))
+        setShouldUpdateFlag(true)
     }
 
     const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-    const shipping = 50
+    const shipping = cartItems.length > 0 ? 50 : 0
     const total = subtotal + shipping
 
     return (
-        <div className="mt-16 px-4 min-h-screen bg-background">
-            <header className="w-full border-b bg-background">
-                <div className="container flex h-16 items-center">
-                    <h1 className="text-2xl font-bold">Your Cart</h1>
-                </div>
-            </header>
+        <div className="mt-12 px-4 min-h-screen bg-background">
+            <SubHeader.Root>
+                <SubHeader.Wrapper>
+                    <SubHeader.Title>Your Cart</SubHeader.Title>
+                </SubHeader.Wrapper>
+            </SubHeader.Root>
+
             <main className="container mx-auto py-10">
                 <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
                     <div>
@@ -59,7 +73,7 @@ export default function ShoppingCart() {
                                 </CardHeader>
                                 <CardContent className="grid gap-6">
                                     {cartItems.map((item) => (
-                                        <div key={item.id} className="flex items-center space-x-4">
+                                        <div key={item.id} className="flex flex-wrap items-center space-x-4">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
@@ -124,7 +138,11 @@ export default function ShoppingCart() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button className="w-full" size="lg" disabled={cartItems.length === 0}>
+                                <Button
+                                    className="w-full"
+                                    size="lg"
+                                    disabled={cartItems.length === 0}
+                                >
                                     Proceed to Checkout
                                 </Button>
                             </CardFooter>
