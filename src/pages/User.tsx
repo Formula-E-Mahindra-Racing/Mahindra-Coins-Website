@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Coins, ShoppingBag, Users, Trophy } from "lucide-react"
 import { ContentWrapper } from '@/components/content-wrapper/ContentWrapper'
+import { SubHeader } from '@/components/sub-header/SubHeader'
 
 type Friend = {
     id: number
@@ -58,7 +59,13 @@ export default function User() {
 
     return (
         <ContentWrapper.Root>
-            <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
+            <SubHeader.Root>
+                <SubHeader.Wrapper>
+                    <SubHeader.Title>Profile</SubHeader.Title>
+                </SubHeader.Wrapper>
+            </SubHeader.Root>
+
+            <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_300px]">
                 <div className="space-y-6">
                     <Card>
                         <CardHeader className="flex flex-row items-center gap-4">

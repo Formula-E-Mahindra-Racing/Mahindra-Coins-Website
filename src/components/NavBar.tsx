@@ -22,7 +22,7 @@ export default function NavBar() {
                     <span className="sr-only">{text}</span>
                 </Link>
             </TooltipTrigger>
-            <TooltipContent side="right">{text}</TooltipContent>
+            <TooltipContent className='hidden sm:block' side="right">{text}</TooltipContent>
         </Tooltip>
     );
 
@@ -92,8 +92,7 @@ export default function NavBar() {
             <nav className="fixed bottom-0 left-0 right-0 z-10 flex justify-between border-t bg-background py-2 px-7 sm:hidden">
                 <List
                     items={NAVBAR.slice(0, -2)}
-                    render={(item, i) => <NavItem key={i} {...item} />
-                    }
+                    render={(item, i) => <NavItem key={i} {...item} />}
                 />
                 <UserModal />
             </nav>

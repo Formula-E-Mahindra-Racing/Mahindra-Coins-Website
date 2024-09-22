@@ -7,16 +7,17 @@ export default function Home() {
     return (
         <div className="flex flex-1 flex-col min-h-screen">
             <main className="flex-1">
-                <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-                    <div className="container px-4 md:px-6">
+                <section className="w-full pt-12 md:pt-24 lg:pt-32 xl:pt-48">
+                    <div className="container">
                         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                             <img
                                 alt="Gen 3 Car"
                                 loading="lazy"
                                 decoding="async"
                                 src="https://www.mahindraracing.com/_next/image?url=https%3A%2F%2Fwww.mahindraracing.com%2Fassets%2F66c6b0c7-52aa-4fe3-bd34-e3c89aeeb477&w=2048&q=100"
+                                className="px-4"
                             />
-                            <div className="flex flex-col justify-center space-y-4">
+                            <div className="px-4 md:px-6 bg-background flex flex-col justify-center space-y-4">
                                 <div className="space-y-2">
                                     <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                                         Welcome to Mahindra Coins
@@ -36,7 +37,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className="px-4 w-full py-12 md:py-24 lg:py-32 bg-muted">
+                <section className="border-t-[42px] border-t-background md:border-t-[96px] lg:border-t-[128px] xl:border-t-[192px] px-4 w-full py-12 md:py-24 lg:py-32 bg-muted">
                     <div>
                         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">How to Earn Mahindra Coins</h2>
                         <div className="grid gap-12 sm:gap-6 lg:grid-cols-3">
