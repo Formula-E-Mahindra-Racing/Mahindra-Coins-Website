@@ -1,25 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Star } from "lucide-react";
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, FormEvent } from 'react'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
+import { Star } from "lucide-react"
+import { useNavigate } from 'react-router-dom'
+
+type CartItem = {
+    id: number
+    name: string
+    price: number
+    quantity: number
+    image: string
+}
 
 export default function Checkout() {
-    const [paymentMethod, setPaymentMethod] = useState('credit-card');
-    const [cartItems, setCartItems] = useState([]);
-    const [showRatingModal, setShowRatingModal] = useState(false);
-    const [rating, setRating] = useState(0);
+    const [paymentMethod, setPaymentMethod] = useState('credit-card')
+    const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [showRatingModal, setShowRatingModal] = useState(false)
+    const [rating, setRating] = useState(0)
 
     const navigate = useNavigate()
 
     useEffect(() => {
-        const savedCart = localStorage.getItem('cart');
+        const savedCart = localStorage.getItem('cart')
         if(!savedCart) return
 
         if (JSON.parse(savedCart).length === 0) {
@@ -28,29 +36,29 @@ export default function Checkout() {
         }
 
         if (savedCart) {
-            setCartItems(JSON.parse(savedCart));
+            setCartItems(JSON.parse(savedCart))
         }
-    }, []);
+    }, [])
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const shipping = cartItems.length > 0 ? 50 : 0;
-    const total = subtotal + shipping;
+    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    const shipping = cartItems.length > 0 ? 50 : 0
+    const total = subtotal + shipping
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         // Here you would typically process the payment
         // For this example, we'll just show the rating modal
-        setShowRatingModal(true);
-    };
+        setShowRatingModal(true)
+    }
 
     const handleRatingSubmit = () => {
         // Clear localStorage
-        localStorage.removeItem('cart');
+        localStorage.removeItem('cart')
         // Close the modal
-        setShowRatingModal(false);
+        setShowRatingModal(false)
         // Call the parent function to handle redirection
-        // onCheckoutComplete();
-    };
+        // onCheckoutComplete()
+    }
 
     return (
         <div className="bg-background min-h-screen py-8">
@@ -226,5 +234,5 @@ export default function Checkout() {
                 </AlertDialogContent>
             </AlertDialog>
         </div>
-    );
+    )
 }
