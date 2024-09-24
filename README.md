@@ -18,11 +18,12 @@ Build for production:
 npm run build
 Preview the build:
 npm run preview
-Expanding the ESLint Configuration
+
+# Expanding the ESLint Configuration
+
 If you are developing a production-grade application, we recommend enhancing the ESLint configuration for more robust type-checking and stylistic improvements.
 
-# Type-Aware Lint Rules
-
+- Type-Aware Lint Rules
 For stronger type-checking, configure the top-level parserOptions property:
 
 export default tseslint.config({
@@ -33,6 +34,7 @@ export default tseslint.config({
     },
   },
 })
+
 Strict Type-Checking Modes
 Replace tseslint.configs.recommended with either tseslint.configs.recommendedTypeChecked or tseslint.configs.strictTypeChecked to enable more comprehensive type-checking rules. The strictTypeChecked option enforces even more rigorous checks and is ideal for critical production applications.
 Optionally, add ...tseslint.configs.stylisticTypeChecked for enforcing stylistic rules like consistent naming conventions and code formatting.
