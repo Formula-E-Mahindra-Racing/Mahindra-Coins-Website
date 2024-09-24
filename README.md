@@ -1,11 +1,13 @@
-React + TypeScript + Vite
+# React + TypeScript + Vite
+
 This template provides a minimal setup to get React working in Vite with HMR (Hot Module Replacement) and some ESLint rules.
 
 Currently, two official plugins are available for integration:
 
-@vitejs/plugin-react uses Babel for Fast Refresh.
-@vitejs/plugin-react-swc uses SWC for Fast Refresh, offering faster build times.
-Installation and Setup
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+# Installation and Setup
 To start using this template:
 
 Install dependencies:
@@ -19,7 +21,8 @@ npm run preview
 Expanding the ESLint Configuration
 If you are developing a production-grade application, we recommend enhancing the ESLint configuration for more robust type-checking and stylistic improvements.
 
-Type-Aware Lint Rules
+# Type-Aware Lint Rules
+
 For stronger type-checking, configure the top-level parserOptions property:
 
 export default tseslint.config({
@@ -53,7 +56,9 @@ export default tseslint.config({
     ...react.configs['jsx-runtime'].rules, // Enforce JSX runtime rules
   },
 })
-Testing Configuration (Optional)
+
+# Testing Configuration (Optional)
+
 For applications that require testing, consider integrating Vitest for a seamless testing experience with Vite:
 
 Install Vitest:
