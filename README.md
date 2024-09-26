@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+# Projeto: Popularidade da Fórmula E - Plataforma Mahindra Engage
 
-This template provides a minimal setup to get React working in Vite with HMR (Hot Module Replacement) and some ESLint rules.
+## Introdução
 
-Currently, two official plugins are available for integration:
+Este projeto visa explorar soluções tecnológicas para aumentar a popularidade da Fórmula E, utilizando a plataforma **Mahindra Engage** como exemplo. A plataforma foi desenvolvida para oferecer uma experiência interativa e personalizada para os fãs, unindo inovação, gamificação e sustentabilidade. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Objetivo
 
-# Installation and Setup
-To start using this template:
+O objetivo principal do projeto é criar uma interface web amigável e envolvente, que ofereça aos fãs da Fórmula E um acesso facilitado a informações sobre corridas, equipes, pilotos e tecnologias sustentáveis. Além disso, a plataforma deve engajar os usuários através de recursos de gamificação, como MahindraCoins, apostas virtuais, loja virtual e sistema de votação.
 
-Install dependencies:
-npm install
-Run the development server:
-npm run dev
-Build for production:
-npm run build
-Preview the build:
-npm run preview
+## Funcionalidades Principais
 
-# Expanding the ESLint Configuration
+### 1. MahindraCoins
+- Descrição: Sistema de moeda virtual que recompensa os usuários por atividades como assistir corridas, comentar e compartilhar conteúdo.
+- Uso: As MahindraCoins podem ser trocadas por produtos na loja virtual, participação em sorteios, acesso a conteúdo exclusivo e apostas virtuais.
 
-If you are developing a production-grade application, we recommend enhancing the ESLint configuration for more robust type-checking and stylistic improvements.
+### 2. Apostas Virtuais
+- Descrição: Sistema interativo de apostas onde os usuários podem utilizar MahindraCoins para prever o resultado de diversas categorias durante as corridas.
+- Categorias Disponíveis: Vencedor da corrida, posição no pódio, pole position, volta mais rápida, equipe vencedora, número de ultrapassagens, entre outras.
 
-- Type-Aware Lint Rules
-For stronger type-checking, configure the top-level parserOptions property:
+### 3. Loja Virtual
+- Descrição: E-commerce integrado à plataforma onde os fãs podem adquirir produtos oficiais da Mahindra Racing, como bonés, camisetas, jaquetas e itens colecionáveis.
+- Integração com MahindraCoins: Os usuários podem utilizar suas MahindraCoins acumuladas para obter descontos e produtos exclusivos.
 
-export default tseslint.config({
-  languageOptions: {
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 4. Sistema de Votação
+- Descrição: Ferramenta que permite aos fãs votar em diversos aspectos relacionados às corridas e à equipe, como layout das pistas, design de produtos e câmeras preferidas durante as transmissões.
+- Engajamento: Os fãs ganham MahindraCoins por participar das votações e ajudam a moldar a experiência da Fórmula E.
 
-Strict Type-Checking Modes
-Replace tseslint.configs.recommended with either tseslint.configs.recommendedTypeChecked or tseslint.configs.strictTypeChecked to enable more comprehensive type-checking rules. The strictTypeChecked option enforces even more rigorous checks and is ideal for critical production applications.
-Optionally, add ...tseslint.configs.stylisticTypeChecked for enforcing stylistic rules like consistent naming conventions and code formatting.
-ESLint React Plugin
-For better React code linting, install and configure eslint-plugin-react:
+## Tecnologias Utilizadas
 
-npm install eslint-plugin-react --save-dev
-Then, update your eslint.config.js:
+- HTML5: Estruturação semântica das páginas e componentes.
+- CSS3: Estilização responsiva e design moderno da interface.
+- JavaScript: Funcionalidades interativas e dinâmicas na plataforma.
+- React: Framework utilizado para desenvolvimento de componentes reutilizáveis e gerenciamento de estado.
+- API REST: Integração com backend para gerenciamento de dados de corridas, apostas e saldo de MahindraCoins.
+- Firebase: Autenticação de usuários e armazenamento de dados em tempo real.
 
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  settings: {
-    react: { version: '18.3' }, // Specify React version for better linting compatibility
-  },
-  plugins: {
-    react, // Add React plugin
-  },
-  rules: {
-    ...react.configs.recommended.rules, // Enable recommended React rules
-    ...react.configs['jsx-runtime'].rules, // Enforce JSX runtime rules
-  },
-})
-
-# Testing Configuration (Optional)
-
-For applications that require testing, consider integrating Vitest for a seamless testing experience with Vite:
-
-Install Vitest:
-npm install vitest --save-dev
-Add test script to package.json:
-{
-  "scripts": {
-    "test": "vitest"
-  }
-}
-Run tests:
-npm run test
+## Estrutura do Projeto
