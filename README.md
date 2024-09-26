@@ -33,6 +33,5 @@ O objetivo principal do projeto é criar uma interface web amigável e envolvent
 - JavaScript: Funcionalidades interativas e dinâmicas na plataforma.
 - React: Framework utilizado para desenvolvimento de componentes reutilizáveis e gerenciamento de estado.
 - API REST: Integração com backend para gerenciamento de dados de corridas, apostas e saldo de MahindraCoins.
-- Firebase: Autenticação de usuários e armazenamento de dados em tempo real.
 
 ## Estrutura do Projeto
