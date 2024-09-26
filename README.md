@@ -13,7 +13,7 @@
 
 ## Introdução
 
-Este projeto visa explorar soluções tecnológicas para aumentar a popularidade da Fórmula E, utilizando a plataforma Mahindra Engage. A plataforma foi desenvolvida para oferecer uma experiência interativa e personalizada para os fãs, unindo inovação, gamificação e sustentabilidade. 
+Este projeto visa explorar soluções tecnológicas para aumentar a popularidade da Fórmula E, utilizando a plataforma **Mahindra Engage**. A plataforma foi desenvolvida para oferecer uma experiência interativa e personalizada para os fãs, unindo inovação, gamificação e sustentabilidade. 
 
 ## Objetivo
 
