@@ -1,8 +1,19 @@
-# Projeto: Popularidade da Fórmula E - Plataforma Mahindra Engage
+# Sprint 2 - Front-End / Web-Development
+
+## Equipe NexusCode
+
+## Integrantes 👋
+<ul>
+    <li>Gabriel Barros (RM556309)</li>  
+    <li>João Marcelo Furtado Romero (RM555199)</li>
+    <li>Kayky Silva Stiliano (RM555148)</li>
+    <li>Pedro Henrique Bizzo de Santana (RM557263)</li>
+    <li>Pedro Henrique Mendes (RM555332)</li>
+</ul>
 
 ## Introdução
 
-Este projeto visa explorar soluções tecnológicas para aumentar a popularidade da Fórmula E, utilizando a plataforma **Mahindra Engage** como exemplo. A plataforma foi desenvolvida para oferecer uma experiência interativa e personalizada para os fãs, unindo inovação, gamificação e sustentabilidade. 
+Este projeto visa explorar soluções tecnológicas para aumentar a popularidade da Fórmula E, utilizando a plataforma Mahindra Engage. A plataforma foi desenvolvida para oferecer uma experiência interativa e personalizada para os fãs, unindo inovação, gamificação e sustentabilidade. 
 
 ## Objetivo
 
