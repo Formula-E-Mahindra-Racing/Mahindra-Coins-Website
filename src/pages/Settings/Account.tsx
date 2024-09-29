@@ -12,15 +12,15 @@ export default function Account() {
                 <CardDescription>Manage your account details and preferences.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className="space-y-2">
+                <section className="space-y-2">
                     <Label htmlFor="username">Username</Label>
                     <Input id="username" placeholder="Your username" />
-                </div>
-                <div className="space-y-2">
+                </section>
+                <section className="space-y-2">
                     <Label htmlFor="email">Email</Label>
                     <Input id="email" type="email" placeholder="Your email" />
-                </div>
-                <div className="space-y-2">
+                </section>
+                <section className="space-y-2">
                     <Label htmlFor="language">Preferred Language</Label>
                     <Select>
                         <SelectTrigger>
@@ -33,7 +33,7 @@ export default function Account() {
                             <SelectItem value="de">Deutsch</SelectItem>
                         </SelectContent>
                     </Select>
-                </div>
+                </section>
             </CardContent>
             <CardFooter>
                 <Button>Save Changes</Button>

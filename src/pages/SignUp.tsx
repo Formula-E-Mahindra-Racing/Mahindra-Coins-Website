@@ -25,18 +25,18 @@ export function SignUp() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="grid gap-4">
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="grid gap-2">
+                    <section className="grid gap-4">
+                        <section className="grid grid-cols-2 gap-4">
+                            <section className="grid gap-2">
                                 <Label htmlFor="first-name">First name</Label>
                                 <Input id="first-name" placeholder="Max" required />
-                            </div>
-                            <div className="grid gap-2">
+                            </section>
+                            <section className="grid gap-2">
                                 <Label htmlFor="last-name">Last name</Label>
                                 <Input id="last-name" placeholder="Robinson" required />
-                            </div>
-                        </div>
-                        <div className="grid gap-2">
+                            </section>
+                        </section>
+                        <section className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
                             <Input
                                 id="email"
@@ -44,24 +44,24 @@ export function SignUp() {
                                 placeholder="m@example.com"
                                 required
                             />
-                        </div>
-                        <div className="grid gap-2">
+                        </section>
+                        <section className="grid gap-2">
                             <Label htmlFor="password">Password</Label>
                             <Input id="password" type="password" />
-                        </div>
+                        </section>
                         <Button type="submit" className="w-full">
                             Create an account
                         </Button>
                         <Button variant="outline" className="w-full">
                             Sign up with GitHub
                         </Button>
-                    </div>
-                    <div className="mt-4 text-center text-sm">
+                    </section>
+                    <section className="mt-4 text-center text-sm">
                         Already have an account?{" "}
                         <Link to="#" className="underline">
                             Sign in
                         </Link>
-                    </div>
+                    </section>
                 </CardContent>
             </Card>
         </main>

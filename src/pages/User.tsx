@@ -65,23 +65,23 @@ export default function User() {
                 </SubHeader.Wrapper>
             </SubHeader.Root>
 
-            <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_300px]">
-                <div className="space-y-6">
+            <section className="mt-4 grid gap-6 lg:grid-cols-[1fr_300px]">
+                <section className="space-y-6">
                     <Card>
                         <CardHeader className="flex flex-row items-center gap-4">
                             <Avatar className="h-20 w-20">
                                 <AvatarImage src="/placeholder.svg?height=80&width=80" alt="User Avatar" />
                                 <AvatarFallback className='z-10'>JD</AvatarFallback>
                             </Avatar>
-                            <div>
+                            <section>
                                 <CardTitle>John Doe</CardTitle>
                                 <CardDescription>Joined April 2023</CardDescription>
-                            </div>
-                            <div className="ml-auto flex items-center gap-2">
+                            </section>
+                            <section className="ml-auto flex items-center gap-2">
                                 <Coins className="h-5 w-5 text-yellow-500" />
                                 <span className="text-2xl font-bold">{userCoins}</span>
                                 <span className="text-muted-foreground">MC</span>
-                            </div>
+                            </section>
                         </CardHeader>
                         <CardContent>
                             <p className="text-muted-foreground">Passionate Formula E fan and Mahindra Racing supporter. Always excited to collect Mahindra Coins and engage with the community!</p>
@@ -102,13 +102,13 @@ export default function User() {
                                 <CardContent>
                                     <ScrollArea className="z-0 h-[400px] w-full rounded-md border p-4">
                                         {purchaseHistory.map((purchase) => (
-                                            <div key={purchase.id} className="mb-4 flex items-center justify-between last:mb-0">
-                                                <div>
+                                            <section key={purchase.id} className="mb-4 flex items-center justify-between last:mb-0">
+                                                <section>
                                                     <p className="font-medium">{purchase.item}</p>
                                                     <p className="text-sm text-muted-foreground">{purchase.date}</p>
-                                                </div>
+                                                </section>
                                                 <Badge variant="secondary">{purchase.price} MC</Badge>
-                                            </div>
+                                            </section>
                                         ))}
                                     </ScrollArea>
                                 </CardContent>
@@ -123,17 +123,17 @@ export default function User() {
                                 <CardContent>
                                     <ScrollArea className="h-[400px] w-full rounded-md border p-4">
                                         {friends.map((friend) => (
-                                            <div key={friend.id} className="mb-4 flex items-center gap-4 last:mb-0">
+                                            <section key={friend.id} className="mb-4 flex items-center gap-4 last:mb-0">
                                                 <Avatar>
                                                     <AvatarImage src={friend.avatar} alt={friend.name} />
                                                     <AvatarFallback>{friend.name[0]}</AvatarFallback>
                                                 </Avatar>
-                                                <div className="flex-1">
+                                                <section className="flex-1">
                                                     <p className="font-medium">{friend.name}</p>
                                                     <p className="text-sm text-muted-foreground">{friend.coinsBalance} MC</p>
-                                                </div>
+                                                </section>
                                                 <Button variant="outline" size="sm">View Profile</Button>
-                                            </div>
+                                            </section>
                                         ))}
                                     </ScrollArea>
                                 </CardContent>
@@ -148,43 +148,43 @@ export default function User() {
                                 <CardContent>
                                     <ScrollArea className="h-[400px] w-full rounded-md border p-4">
                                         {achievements.map((achievement) => (
-                                            <div key={achievement.id} className="mb-4 flex items-center gap-4 last:mb-0">
-                                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-2xl">
+                                            <section key={achievement.id} className="mb-4 flex items-center gap-4 last:mb-0">
+                                                <section className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-2xl">
                                                     {achievement.icon}
-                                                </div>
-                                                <div>
+                                                </section>
+                                                <section>
                                                     <p className="font-medium">{achievement.name}</p>
                                                     <p className="text-sm text-muted-foreground">{achievement.description}</p>
-                                                </div>
-                                            </div>
+                                                </section>
+                                            </section>
                                         ))}
                                     </ScrollArea>
                                 </CardContent>
                             </Card>
                         </TabsContent>
                     </Tabs>
-                </div>
-                <div className="space-y-6">
+                </section>
+                <section className="space-y-6">
                     <Card>
                         <CardHeader>
                             <CardTitle>Quick Stats</CardTitle>
                         </CardHeader>
                         <CardContent className="grid gap-4">
-                            <div className="flex items-center gap-2">
+                            <section className="flex items-center gap-2">
                                 <ShoppingBag className="h-5 w-5 text-muted-foreground" />
                                 <span className="text-sm font-medium">Total Purchases:</span>
                                 <span className="ml-auto font-bold">12</span>
-                            </div>
-                            <div className="flex items-center gap-2">
+                            </section>
+                            <section className="flex items-center gap-2">
                                 <Users className="h-5 w-5 text-muted-foreground" />
                                 <span className="text-sm font-medium">Friends:</span>
                                 <span className="ml-auto font-bold">{friends.length}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
+                            </section>
+                            <section className="flex items-center gap-2">
                                 <Trophy className="h-5 w-5 text-muted-foreground" />
                                 <span className="text-sm font-medium">Achievements:</span>
                                 <span className="ml-auto font-bold">{achievements.length}</span>
-                            </div>
+                            </section>
                         </CardContent>
                     </Card>
                     <Card>
@@ -193,29 +193,29 @@ export default function User() {
                         </CardHeader>
                         <CardContent>
                             <ScrollArea className="h-[200px] w-full rounded-md">
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-2">
+                                <section className="space-y-4">
+                                    <section className="flex items-center gap-2">
                                         <Badge variant="outline">Purchase</Badge>
                                         <span className="text-sm">Bought a Mahindra Racing Cap</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
+                                    </section>
+                                    <section className="flex items-center gap-2">
                                         <Badge variant="outline">Coins</Badge>
                                         <span className="text-sm">Earned 50 MC for forum post</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
+                                    </section>
+                                    <section className="flex items-center gap-2">
                                         <Badge variant="outline">Social</Badge>
                                         <span className="text-sm">Added Charlie Brown as a friend</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
+                                    </section>
+                                    <section className="flex items-center gap-2">
                                         <Badge variant="outline">Achievement</Badge>
                                         <span className="text-sm">Unlocked "Race Fan" achievement</span>
-                                    </div>
-                                </div>
+                                    </section>
+                                </section>
                             </ScrollArea>
                         </CardContent>
                     </Card>
-                </div>
-            </div>
+                </section>
+            </section>
         </ContentWrapper.Root>
     )
 }

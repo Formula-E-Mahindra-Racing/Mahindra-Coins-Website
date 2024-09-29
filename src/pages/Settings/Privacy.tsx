@@ -12,7 +12,7 @@ export default function Privacy() {
                 <CardDescription>Manage your privacy and security preferences.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className="space-y-2">
+                <section className="space-y-2">
                     <Label htmlFor="visibility">Profile Visibility</Label>
                     <Select>
                         <SelectTrigger>
@@ -24,15 +24,15 @@ export default function Privacy() {
                             <SelectItem value="private">Private</SelectItem>
                         </SelectContent>
                     </Select>
-                </div>
-                <div className="flex items-center space-x-2">
+                </section>
+                <section className="flex items-center space-x-2">
                     <Switch id="marketing" />
                     <Label htmlFor="marketing">Receive Marketing Emails</Label>
-                </div>
-                <div className="flex items-center space-x-2">
+                </section>
+                <section className="flex items-center space-x-2">
                     <Switch id="data-sharing" />
                     <Label htmlFor="data-sharing">Allow Data Sharing with Partners</Label>
-                </div>
+                </section>
             </CardContent>
             <CardFooter>
                 <Button>Update Privacy Settings</Button>

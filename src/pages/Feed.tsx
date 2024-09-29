@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { ThumbsUp, MessageCircle, Share2 } from "lucide-react"
 import { SubHeader } from '@/components/sub-header/SubHeader'
+import { MahindraCoinsContext } from '@/contexts/MahindraCoinsContext'
 
 type Post = {
     id: number
@@ -79,6 +80,16 @@ export default function MahindraFeed() {
     const [polls, setPolls] = useState<Poll[]>(initialPolls)
     const [newPost, setNewPost] = useState("")
 
+    const { setWallet } = useContext(MahindraCoinsContext)
+
+    const handleMcs = (n = 2) => {
+        const wallet = localStorage.getItem('wallet')
+        if (!wallet) return
+        if (JSON.parse(wallet) <= 0) localStorage.setItem("wallet", JSON.stringify(1400))
+        localStorage.setItem('wallet', String(Number(wallet) + n))
+        setWallet(prev => prev + (n))
+    }
+
     const handlePostSubmit = () => {
         if (newPost.trim()) {
             const post: Post = {
@@ -93,6 +104,7 @@ export default function MahindraFeed() {
             }
             setPosts([post, ...posts])
             setNewPost("")
+            handleMcs(10)
         }
     }
 
@@ -100,6 +112,7 @@ export default function MahindraFeed() {
         setPosts(posts.map(post =>
             post.id === postId ? { ...post, likes: post.likes + 1 } : post
         ))
+        handleMcs(1)
     }
 
     const handleVote = (pollId: number, optionId: number) => {
@@ -112,6 +125,7 @@ export default function MahindraFeed() {
                 totalVotes: poll.totalVotes + 1
             } : poll
         ))
+        handleMcs(2)
     }
 
     return (

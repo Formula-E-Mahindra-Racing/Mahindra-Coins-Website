@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Trash2, MinusCircle, PlusCircle } from "lucide-react"
 import { SubHeader } from '@/components/sub-header/SubHeader'
+import { useNavigate } from 'react-router-dom'
+import { useToast } from '@/hooks/use-toast'
 
 type CartItem = {
     id: number
@@ -49,8 +51,28 @@ export default function ShoppingCart() {
     const shipping = cartItems.length > 0 ? 50 : 0
     const total = subtotal + shipping
 
+    const navigate = useNavigate()
+
+    const { toast } = useToast()
+
+    const finishCheckout = () => {
+        const wallet = localStorage.getItem('wallet')
+        if (!wallet) localStorage.setItem('wallet', JSON.stringify(1400))
+        if (wallet && JSON.parse(wallet))
+            if (total > JSON.parse(wallet)) {
+                toast({
+                    title: "Sorry, you don't have enough MCs...",
+                    description: "You can earn them by interacting with other people and such",
+                    variant: 'destructive'
+                })
+            }
+            else {
+                navigate('/checkout')
+            }
+    }
+
     return (
-        <div className="mt-12 px-4 min-h-screen bg-background">
+        <section className="mt-12 px-4 min-h-screen bg-background">
             <SubHeader.Root>
                 <SubHeader.Wrapper>
                     <SubHeader.Title>Your Cart</SubHeader.Title>
@@ -58,8 +80,8 @@ export default function ShoppingCart() {
             </SubHeader.Root>
 
             <main className="container mx-auto py-10">
-                <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
-                    <div>
+                <section className="grid gap-10 lg:grid-cols-[1fr_300px]">
+                    <section>
                         {cartItems.length === 0 ? (
                             <Card>
                                 <CardContent className="pt-6 text-center">
@@ -73,7 +95,7 @@ export default function ShoppingCart() {
                                 </CardHeader>
                                 <CardContent className="grid gap-6">
                                     {cartItems.map((item) => (
-                                        <div key={item.id} className="flex flex-wrap items-center space-x-4">
+                                        <section key={item.id} className="flex flex-wrap items-center space-x-4">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
@@ -81,11 +103,11 @@ export default function ShoppingCart() {
                                                 height={80}
                                                 className="rounded-md object-cover"
                                             />
-                                            <div className="flex-1 space-y-1">
+                                            <section className="flex-1 space-y-1">
                                                 <h3 className="font-medium">{item.name}</h3>
                                                 <p className="text-sm text-muted-foreground">{item.price} MC</p>
-                                            </div>
-                                            <div className="flex items-center space-x-2">
+                                            </section>
+                                            <section className="flex items-center space-x-2">
                                                 <Button
                                                     variant="outline"
                                                     size="icon"
@@ -107,41 +129,42 @@ export default function ShoppingCart() {
                                                 >
                                                     <PlusCircle className="h-4 w-4" />
                                                 </Button>
-                                            </div>
+                                            </section>
                                             <Button variant="destructive" size="icon" onClick={() => removeItem(item.id)}>
                                                 <Trash2 className="h-4 w-4" />
                                             </Button>
-                                        </div>
+                                        </section>
                                     ))}
                                 </CardContent>
                             </Card>
                         )}
-                    </div>
-                    <div className="space-y-6">
+                    </section>
+                    <section className="space-y-6">
                         <Card>
                             <CardHeader>
                                 <CardTitle>Order Summary</CardTitle>
                             </CardHeader>
                             <CardContent className="grid gap-4">
-                                <div className="flex justify-between">
+                                <section className="flex justify-between">
                                     <span>Subtotal</span>
                                     <span>{subtotal} MC</span>
-                                </div>
-                                <div className="flex justify-between">
+                                </section>
+                                <section className="flex justify-between">
                                     <span>Shipping</span>
                                     <span>{shipping} MC</span>
-                                </div>
+                                </section>
                                 <Separator />
-                                <div className="flex justify-between font-medium">
+                                <section className="flex justify-between font-medium">
                                     <span>Total</span>
                                     <span>{total} MC</span>
-                                </div>
+                                </section>
                             </CardContent>
                             <CardFooter>
                                 <Button
                                     className="w-full"
                                     size="lg"
                                     disabled={cartItems.length === 0}
+                                    onClick={() => finishCheckout()}
                                 >
                                     Proceed to Checkout
                                 </Button>
@@ -152,15 +175,15 @@ export default function ShoppingCart() {
                                 <CardTitle>Have a promo code?</CardTitle>
                             </CardHeader>
                             <CardContent className="grid gap-4">
-                                <div className="flex space-x-2">
+                                <section className="flex space-x-2">
                                     <Input placeholder="Enter code" />
                                     <Button>Apply</Button>
-                                </div>
+                                </section>
                             </CardContent>
                         </Card>
-                    </div>
-                </div>
+                    </section>
+                </section>
             </main>
-        </div>
+        </section>
     )
 }
