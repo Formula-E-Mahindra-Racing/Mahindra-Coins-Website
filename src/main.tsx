@@ -4,7 +4,7 @@ import './index.css'
 import DefaultLayout from './layouts/DefaultLayout.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-  <DefaultLayout/>
-  </StrictMode>,
+    <StrictMode>
+        <DefaultLayout />
+    </StrictMode>,
 )

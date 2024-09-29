@@ -13,6 +13,7 @@ import NotFound from '@/pages/NotFound'
 import Settings from '@/pages/Settings/Settings'
 import User from '@/pages/User'
 import Checkout from '@/pages/Checkout'
+import { MahindraCoinsProvider } from '@/contexts/MahindraCoinsContext'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
     const { isAuthenticated } = useAuth()
@@ -24,27 +25,29 @@ export default function DefaultLayout() {
     return (
         <Router>
             <AuthProvider>
-                <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/sign-up" element={<SignUp />} />
-                    <Route
-                        path="/"
-                        element={
-                            <ProtectedRoute>
-                                <App />
-                            </ProtectedRoute>
-                        }
-                    >
-                        <Route index path='/' element={<Home/>}/>
-                        <Route path='/store' element={<Store/>}/>
-                        <Route path='/feed' element={<Feed/>}/>
-                        <Route path='/shopping-cart' element={<ShoppingCart/>}/>
-                        <Route path='/settings' element={<Settings/>}/>
-                        <Route path='/user' element={<User/>}/>
-                        <Route path='/checkout' element={<Checkout/>}/>
-                    </Route>
-                    <Route path='*' element={<NotFound/>}/>
-                </Routes>
+                <MahindraCoinsProvider>
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/sign-up" element={<SignUp />} />
+                        <Route
+                            path="/"
+                            element={
+                                <ProtectedRoute>
+                                    <App />
+                                </ProtectedRoute>
+                            }
+                        >
+                            <Route index path='/' element={<Home />} />
+                            <Route path='/store' element={<Store />} />
+                            <Route path='/feed' element={<Feed />} />
+                            <Route path='/shopping-cart' element={<ShoppingCart />} />
+                            <Route path='/settings' element={<Settings />} />
+                            <Route path='/user' element={<User />} />
+                            <Route path='/checkout' element={<Checkout />} />
+                        </Route>
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
+                </MahindraCoinsProvider>
             </AuthProvider>
         </Router>
     )

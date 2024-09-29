@@ -12,7 +12,9 @@ export default function Header() {
     useMount(() => {
         const wallet = localStorage.getItem('wallet')
         if (!wallet) return
-        setWallet(JSON.parse(wallet))
+        if (JSON.parse(wallet) <= 0) localStorage.setItem("wallet", JSON.stringify(1400))
+        localStorage.setItem('wallet', String(Number(wallet)))
+        setWallet(Number(JSON.parse(wallet)))
     })
 
     return (

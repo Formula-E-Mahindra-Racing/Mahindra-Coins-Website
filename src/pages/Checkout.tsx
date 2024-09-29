@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent } from 'react'
+import { useState, useEffect, FormEvent, useContext } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 import { Star } from "lucide-react"
 import { useNavigate } from 'react-router-dom'
+import { MahindraCoinsContext } from '@/contexts/MahindraCoinsContext'
 
 type CartItem = {
     id: number
@@ -50,6 +51,21 @@ export default function Checkout() {
     const handleRatingSubmit = () => {
         localStorage.removeItem('cart')
         setShowRatingModal(false)
+    }
+
+    const { setWallet } = useContext(MahindraCoinsContext)
+
+    const handleMcs = (n = 2) => {
+        const wallet = localStorage.getItem('wallet')
+        if (!wallet) return
+        if (JSON.parse(wallet) <= 0) localStorage.setItem("wallet", JSON.stringify(1400))
+        localStorage.setItem('wallet', String(Number(wallet) + n))
+        setWallet(prev => prev + (n))
+    }
+
+    const finishPurchase = () => {
+        handleMcs(-total)
+        navigate('/shopping-cart')
     }
 
     return (
@@ -137,7 +153,11 @@ export default function Checkout() {
                                             </section>
                                         </CardContent>
                                         <CardFooter>
-                                            <Button type="submit" className="w-full">Place Order</Button>
+                                            <Button
+                                                className="w-full"
+                                                onClick={() => finishPurchase()}
+                                                type="submit"
+                                            >Place Order</Button>
                                         </CardFooter>
                                     </Card>
                                 </section>
