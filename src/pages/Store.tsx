@@ -5,6 +5,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ShoppingCart, Plus, Minus } from "lucide-react"
 import { SubHeader } from '@/components/sub-header/SubHeader'
 import List from '@/components/utils/List'
+import cap from '../assets/cap.jpeg'
+import tShrit from '../assets/t-shirt.jpeg'
+import hoodie from '../assets/hoodie.jpeg'
+import mug from '../assets/mug.jpeg'
+import polo from '../assets/polo.jpeg'
+import snapBack from '../assets/snapback.jpeg'
 import {
     Dialog,
     DialogContent,
@@ -29,12 +35,12 @@ type CartItem = Product & {
 }
 
 const products: Product[] = [
-    { id: 1, name: "Mahindra Racing Cap", price: 250, image: "/placeholder.svg?height=200&width=200", category: "Caps" },
-    { id: 2, name: "Formula E T-Shirt", price: 500, image: "/placeholder.svg?height=200&width=200", category: "T-Shirts" },
-    { id: 3, name: "Mahindra Hoodie", price: 750, image: "/placeholder.svg?height=200&width=200", category: "Hoodies" },
-    { id: 4, name: "Racing Mug", price: 200, image: "/placeholder.svg?height=200&width=200", category: "Mugs" },
-    { id: 5, name: "Team Polo Shirt", price: 550, image: "/placeholder.svg?height=200&width=200", category: "T-Shirts" },
-    { id: 6, name: "Mahindra Snapback", price: 300, image: "/placeholder.svg?height=200&width=200", category: "Caps" },
+    { id: 1, name: "Mahindra Racing Cap", price: 250, image: cap, category: "Caps" },
+    { id: 2, name: "Formula E T-Shirt", price: 500, image: tShrit, category: "T-Shirts" },
+    { id: 3, name: "Mahindra Hoodie", price: 750, image: hoodie, category: "Hoodies" },
+    { id: 4, name: "Racing Mug", price: 200, image: mug, category: "Mugs" },
+    { id: 5, name: "Team Polo Shirt", price: 550, image: polo, category: "T-Shirts" },
+    { id: 6, name: "Mahindra Snapback", price: 300, image: snapBack, category: "Caps" },
 ]
 
 export default function Store() {
