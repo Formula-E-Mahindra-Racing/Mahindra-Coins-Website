@@ -3,10 +3,10 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  HTMLsectionElement,
+  React.HTMLAttributes<HTMLsectionElement>
 >(({ className, ...props }, ref) => (
-  <div
+  <section
     ref={ref}
     className={cn(
       "rounded-lg border bg-card text-card-foreground shadow-sm",
@@ -18,10 +18,10 @@ const Card = React.forwardRef<
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  HTMLsectionElement,
+  React.HTMLAttributes<HTMLsectionElement>
 >(({ className, ...props }, ref) => (
-  <div
+  <section
     ref={ref}
     className={cn("flex flex-col space-y-1.5 p-6", className)}
     {...props}
@@ -57,18 +57,18 @@ const CardDescription = React.forwardRef<
 CardDescription.displayName = "CardDescription"
 
 const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  HTMLsectionElement,
+  React.HTMLAttributes<HTMLsectionElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <section ref={ref} className={cn("p-6 pt-0", className)} {...props} />
 ))
 CardContent.displayName = "CardContent"
 
 const CardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
+  HTMLsectionElement,
+  React.HTMLAttributes<HTMLsectionElement>
 >(({ className, ...props }, ref) => (
-  <div
+  <section
     ref={ref}
     className={cn("flex items-center p-6 pt-0", className)}
     {...props}

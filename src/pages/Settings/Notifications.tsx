@@ -16,7 +16,7 @@ export default function Notifications() {
                 <CardDescription>Choose how you want to be notified.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
+                <section className="flex items-center justify-between">
                     <Label htmlFor="notifications" className="flex items-center space-x-2">
                         <Bell className="h-4 w-4" />
                         <span>Enable Notifications</span>
@@ -26,24 +26,24 @@ export default function Notifications() {
                         checked={notificationsEnabled}
                         onCheckedChange={setNotificationsEnabled}
                     />
-                </div>
-                <div className="space-y-2">
+                </section>
+                <section className="space-y-2">
                     <Label>Notification Types</Label>
                     <RadioGroup defaultValue="all" className="space-y-2">
-                        <div className="flex items-center space-x-2">
+                        <section className="flex items-center space-x-2">
                             <RadioGroupItem value="all" id="all" />
                             <Label htmlFor="all">All Notifications</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
+                        </section>
+                        <section className="flex items-center space-x-2">
                             <RadioGroupItem value="important" id="important" />
                             <Label htmlFor="important">Important Only</Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
+                        </section>
+                        <section className="flex items-center space-x-2">
                             <RadioGroupItem value="none" id="none" />
                             <Label htmlFor="none">None</Label>
-                        </div>
+                        </section>
                     </RadioGroup>
-                </div>
+                </section>
             </CardContent>
             <CardFooter>
                 <Button>Save Preferences</Button>

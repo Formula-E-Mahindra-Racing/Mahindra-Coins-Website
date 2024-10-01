@@ -72,4 +72,3 @@ function InfoSection({ title, subTitle, Icon }: InfoSectionProps) {
         </div>
     )
 }
-

@@ -113,16 +113,16 @@ export default function Store() {
                                 <DialogHeader>
                                     <DialogTitle>Your Cart</DialogTitle>
                                 </DialogHeader>
-                                <div className="py-4">
+                                <section className="py-4">
                                     {cart.length === 0 ? (
                                         <p>Your cart is empty</p>
                                     ) : (
                                         <List
                                             items={cart}
                                             render={(item) => (
-                                                <div key={item.id} className="flex items-center justify-between py-2">
+                                                <section key={item.id} className="flex items-center justify-between py-2">
                                                     <span>{item.name}</span>
-                                                    <div className="flex items-center gap-2">
+                                                    <section className="flex items-center gap-2">
                                                         <Button size="sm" variant="outline" onClick={() => removeFromCart(item.id)}>
                                                             <Minus className="h-4 w-4" />
                                                         </Button>
@@ -130,12 +130,12 @@ export default function Store() {
                                                         <Button size="sm" variant="outline" onClick={() => addToCart(item)}>
                                                             <Plus className="h-4 w-4" />
                                                         </Button>
-                                                    </div>
-                                                </div>
+                                                    </section>
+                                                </section>
                                             )}
                                         />
                                     )}
-                                </div>
+                                </section>
                                 <Link to='/shopping-cart'>
                                     <Button className="w-full">
                                         Go to Shopping Cart
@@ -149,9 +149,9 @@ export default function Store() {
 
             <main className="flex-1">
                 <section className="w-full py-12">
-                    <div className="mx-auto max-w-screen-2xl">
-                        <div className="w-full">
-                            <div className="flex flex-wrap gap-3 justify-between items-center mb-6">
+                    <section className="mx-auto max-w-screen-2xl">
+                        <section className="w-full">
+                            <section className="flex flex-wrap gap-3 justify-between items-center mb-6">
                                 <Select onValueChange={(value) => setFilter(value)}>
                                     <SelectTrigger className="w-fullsm:w-[180px]">
                                         <SelectValue placeholder="Filter by category" />
@@ -164,8 +164,8 @@ export default function Store() {
                                         <SelectItem value="Mugs">Mugs</SelectItem>
                                     </SelectContent>
                                 </Select>
-                            </div>
-                            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            </section>
+                            <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                                 <List
                                     items={filteredProducts}
                                     render={(product) => (
@@ -188,7 +188,7 @@ export default function Store() {
                                             </CardContent>
                                             <CardFooter>
                                                 <Button
-                                                    disabled={clickedButtons === product.id} // Disable only the clicked button
+                                                    disabled={clickedButtons === product.id}
                                                     onClick={() => addToCart(product)}
                                                     className="w-full"
                                                 >
@@ -198,9 +198,9 @@ export default function Store() {
                                         </Card>
                                     )}
                                 />
-                            </div>
-                        </div>
-                    </div>
+                            </section>
+                        </section>
+                    </section>
                 </section>
             </main>
         </ContentWrapper.Root>

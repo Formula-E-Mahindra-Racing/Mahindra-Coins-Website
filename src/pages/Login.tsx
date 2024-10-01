@@ -11,17 +11,17 @@ export function Login() {
     // const {isUserLogged} = useContext(LoginContext)
     // console.log('from login: ', isUserLogged)
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
-      <div className="flex items-center justify-center py-12">
-        <div className="mx-auto grid w-[350px] gap-6">
-          <div className="grid gap-2 text-center">
+    <section className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+      <section className="flex items-center justify-center py-12">
+        <section className="mx-auto grid w-[350px] gap-6">
+          <section className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
               Enter your email below to login to your account
             </p>
-          </div>
-          <div className="grid gap-4">
-            <div className="grid gap-2">
+          </section>
+          <section className="grid gap-4">
+            <section className="grid gap-2">
               <Label htmlFor="login-email">Email</Label>
               <Input
                 id="login-email"
@@ -29,9 +29,9 @@ export function Login() {
                 placeholder="mahindra@example.com"
                 required
               />
-            </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
+            </section>
+            <section className="grid gap-2">
+              <section className="flex items-center">
                 <Label htmlFor="login-password">Password</Label>
                 <Link
                   to="/forgot-password"
@@ -39,25 +39,25 @@ export function Login() {
                 >
                   Forgot your password?
                 </Link>
-              </div>
+              </section>
               <Input id="login-password" type="password" required />
-            </div>
+            </section>
             <Button type="submit" className="w-full">
               Login
             </Button>
             <Button variant="outline" className="w-full">
               Login with Google
             </Button>
-          </div>
-          <div className="mt-4 text-center text-sm">
+          </section>
+          <section className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
             <Link to="/sign-up" className="underline">
               Sign up
             </Link>
-          </div>
-        </div>
-      </div>
-      <div className="hidden bg-muted lg:block">
+          </section>
+        </section>
+      </section>
+      <section className="hidden bg-muted lg:block">
         <img
           src="/placeholder.svg"
           alt="Image"
@@ -65,7 +65,7 @@ export function Login() {
           height="1080"
           className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />
-      </div>
-    </div>
+      </section>
+    </section>
   )
 }

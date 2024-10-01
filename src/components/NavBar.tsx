@@ -54,7 +54,7 @@ export default function NavBar() {
             <DialogPortal>
                 <DialogTitle className='sr-only'>Chose to go to users page or settings page</DialogTitle>
                 <DialogContent data-state={open ? 'open' : 'closed'} className="bg-transparent border-none fixed bottom-16 right-[28px] w-fit h-fit sm:max-w-[425px]">
-                    <div className="grid gap-8">
+                    <section className="grid gap-8">
                         <Button asChild>
                             <Link
                                 to='settings'
@@ -75,7 +75,7 @@ export default function NavBar() {
                                 <span className="sr-only">User</span>
                             </Link>
                         </Button>
-                    </div>
+                    </section>
                 </DialogContent>
             </DialogPortal>
         </Dialog>
