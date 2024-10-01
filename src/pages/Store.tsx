@@ -16,6 +16,13 @@ import { DialogPortal } from '@radix-ui/react-dialog'
 import { ContentWrapper } from '@/components/content-wrapper/ContentWrapper'
 import { Link } from 'react-router-dom'
 
+import mahindraRacingCap from '../assets/mahindra-racing-cap.jpeg'
+import formulaETShirt from '../assets/formula-e-t-shirt.jpeg'
+import mahindraHoodie from '../assets/mahindra-hoodie.jpeg'
+import racingMug from '../assets/racing-mug.jpeg'
+import mahindraPolo from '../assets/mahindra-polo.jpeg'
+import mahindraSnapback from '../assets/mahindra-snapback.jpeg'
+
 type Product = {
     id: number
     name: string
@@ -29,32 +36,21 @@ type CartItem = Product & {
 }
 
 const products: Product[] = [
-    { id: 1, name: "Mahindra Racing Cap", price: 250, image: "/placeholder.svg?height=200&width=200", category: "Caps" },
-    { id: 2, name: "Formula E T-Shirt", price: 500, image: "/placeholder.svg?height=200&width=200", category: "T-Shirts" },
-    { id: 3, name: "Mahindra Hoodie", price: 750, image: "/placeholder.svg?height=200&width=200", category: "Hoodies" },
-    { id: 4, name: "Racing Mug", price: 200, image: "/placeholder.svg?height=200&width=200", category: "Mugs" },
-    { id: 5, name: "Team Polo Shirt", price: 550, image: "/placeholder.svg?height=200&width=200", category: "T-Shirts" },
-    { id: 6, name: "Mahindra Snapback", price: 300, image: "/placeholder.svg?height=200&width=200", category: "Caps" },
+    { id: 1, name: "Mahindra Racing Cap", price: 250, image: mahindraRacingCap, category: "Caps" },
+    { id: 2, name: "Formula E T-Shirt", price: 500, image: formulaETShirt, category: "T-Shirts" },
+    { id: 3, name: "Mahindra Hoodie", price: 750, image: mahindraHoodie, category: "Hoodies" },
+    { id: 4, name: "Racing Mug", price: 200, image: racingMug, category: "Mugs" },
+    { id: 5, name: "Team Polo Shirt", price: 550, image: mahindraPolo, category: "T-Shirts" },
+    { id: 6, name: "Mahindra Snapback", price: 300, image: mahindraSnapback, category: "Caps" },
 ]
 
 export default function Store() {
     const [cart, setCart] = useState<CartItem[]>([])
     const [filter, setFilter] = useState("All")
-    const [shouldUpdateFlag, setShouldUpdateFlag] = useState(false)
-
-    useEffect(() => {
-        const savedCart = localStorage.getItem('cart')
-        if (savedCart) {
-            setCart(JSON.parse(savedCart))
-        }
-    }, [])
-
-    useEffect(() => {
-        if (!shouldUpdateFlag) return
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart, shouldUpdateFlag])
+    const [clickedButtons, setClickedButtons] = useState<number | null>(null)
 
     const addToCart = (product: Product) => {
+        setClickedButtons(product.id)
         setCart(prevCart => {
             const existingItem = prevCart.find(item => item.id === product.id)
             if (existingItem) {
@@ -67,7 +63,10 @@ export default function Store() {
                 return [...prevCart, { ...product, quantity: 1 }]
             }
         })
-        setShouldUpdateFlag(true)
+
+        setTimeout(() => {
+            setClickedButtons(null)
+        }, 1000)
     }
 
     const removeFromCart = (productId: number) => {
@@ -79,12 +78,23 @@ export default function Store() {
             ).filter(item => item.quantity > 0)
             return updatedCart
         })
-        setShouldUpdateFlag(true)
     }
 
     const filteredProducts = filter === "All" ? products : products.filter(product => product.category === filter)
 
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0)
+
+    useEffect(() => {
+        const savedCart = localStorage.getItem('cart')
+        if (savedCart) {
+            setCart(JSON.parse(savedCart))
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!cart) return
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
 
     return (
         <ContentWrapper.Root>
@@ -126,11 +136,11 @@ export default function Store() {
                                         />
                                     )}
                                 </div>
-                                <Button className="w-full">
-                                    <Link to='/shopping-cart'>
+                                <Link to='/shopping-cart'>
+                                    <Button className="w-full">
                                         Go to Shopping Cart
-                                    </Link>
-                                </Button>
+                                    </Button>
+                                </Link>
                             </DialogContent>
                         </DialogPortal>
                     </Dialog>
@@ -161,21 +171,28 @@ export default function Store() {
                                     render={(product) => (
                                         <Card key={product.id}>
                                             <CardHeader>
-                                                <img
-                                                    src={product.image}
-                                                    alt={product.name}
-                                                    width={200}
-                                                    height={200}
-                                                    className="w-full h-48 object-cover"
-                                                />
+                                                <picture className='relative w-full h-[330px]'>
+                                                    <img
+                                                        src={product.image}
+                                                        alt={product.name}
+                                                        width={200}
+                                                        height={200}
+                                                        className="rounded w-full h-full object-cover object-[0_40%]"
+                                                    />
+                                                    <div className='bg-gradient-to-t from-[rgba(73,119,229,0.1)] to-transparent absolute top-0 left-0 h-full w-full' />
+                                                </picture>
                                             </CardHeader>
                                             <CardContent>
                                                 <CardTitle>{product.name}</CardTitle>
                                                 <p className="text-muted-foreground">{product.price} MC</p>
                                             </CardContent>
                                             <CardFooter>
-                                                <Button onClick={() => addToCart(product)} className="w-full">
-                                                    Add to Cart
+                                                <Button
+                                                    disabled={clickedButtons === product.id} // Disable only the clicked button
+                                                    onClick={() => addToCart(product)}
+                                                    className="w-full"
+                                                >
+                                                    {clickedButtons === product.id ? "Added!" : "Add to Cart"}
                                                 </Button>
                                             </CardFooter>
                                         </Card>

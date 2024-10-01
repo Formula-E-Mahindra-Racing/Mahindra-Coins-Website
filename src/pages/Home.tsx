@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import List from "@/components/utils/List"
 import { INFOS } from "@/constants/Home"
 import { InfoSection as InfoSectionProps } from "@/types/HomeInfo"
+import { Link } from "react-router-dom"
 
 export default function Home() {
     return (
@@ -27,7 +28,7 @@ export default function Home() {
                                     </p>
                                 </div>
                                 <div className="flex flex-col gap-3 min-[400px]:flex-row">
-                                    <Button size="lg">Get Started</Button>
+                                    <Link to='/feed'><Button size="lg">Get Started</Button></Link>
                                     <Button size="lg" variant="outline">
                                         Learn More
                                     </Button>

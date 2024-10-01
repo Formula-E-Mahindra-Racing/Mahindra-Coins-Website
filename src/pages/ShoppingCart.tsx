@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
-import { Trash2, MinusCircle, PlusCircle } from "lucide-react"
+import { Trash2, MinusCircle, PlusCircle, ShoppingBag } from "lucide-react"
 import { SubHeader } from '@/components/sub-header/SubHeader'
+import { Link } from 'react-router-dom'
 
 type CartItem = {
     id: number
@@ -14,22 +15,14 @@ type CartItem = {
     image: string
 }
 
+let promoCounter = 0
+
 export default function ShoppingCart() {
     const [cartItems, setCartItems] = useState<CartItem[]>([])
 
     const [shouldUpdateFlag, setShouldUpdateFlag] = useState(false)
 
-    useEffect(() => {
-        const savedCart = localStorage.getItem('cart')
-        if (savedCart) {
-            setCartItems(JSON.parse(savedCart))
-        }
-    }, [])
-
-    useEffect(() => {
-        if (!shouldUpdateFlag) return
-        localStorage.setItem('cart', JSON.stringify(cartItems))
-    }, [cartItems, shouldUpdateFlag])
+    const [promoCode, setPromoCode] = useState('')
 
     const updateQuantity = (id: number, newQuantity: number) => {
         setCartItems(prevItems =>
@@ -45,9 +38,42 @@ export default function ShoppingCart() {
         setShouldUpdateFlag(true)
     }
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-    const shipping = cartItems.length > 0 ? 50 : 0
-    const total = subtotal + shipping
+    const [subtotal, setSubtotal] = useState(0)
+    const [shipping, setShipping] = useState(0)
+    const [total, setTotal] = useState(0)
+
+    const applyPromoCode = () => {
+        promoCounter++
+        if (promoCounter > 1) return
+        setTotal(prev => {
+            if (promoCode.toLowerCase() === 'mahindra10')
+                prev = (prev - (prev * .1))
+            return prev
+        })
+    }
+
+    useEffect(() => {
+        const newSubtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+        const newShipping = newSubtotal < 260 && newSubtotal > 0 ? 100 : 0
+        const newTotal = newSubtotal + newShipping
+
+        setSubtotal(newSubtotal)
+        setShipping(newShipping)
+        setTotal(newTotal)
+    }, [cartItems])
+
+    useEffect(() => {
+        const savedCart = localStorage.getItem('cart')
+        if (savedCart) {
+            setCartItems(JSON.parse(savedCart))
+        }
+    }, [])
+
+    useEffect(() => {
+        if (!shouldUpdateFlag) return
+        localStorage.setItem('cart', JSON.stringify(cartItems))
+    }, [cartItems, shouldUpdateFlag])
+
 
     return (
         <div className="mt-12 px-4 min-h-screen bg-background">
@@ -61,11 +87,18 @@ export default function ShoppingCart() {
                 <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
                     <div>
                         {cartItems.length === 0 ? (
-                            <Card>
-                                <CardContent className="pt-6 text-center">
-                                    <p className="text-muted-foreground">Your cart is empty</p>
-                                </CardContent>
-                            </Card>
+                            <>
+                                <Card>
+                                    <CardContent className="pt-6 text-center">
+                                        <p className="text-muted-foreground">Your cart is empty</p>
+                                    </CardContent>
+                                </Card>
+                                <section className='flex mt-10'>
+                                    <Link to='/store' className='mx-auto w-[280px]'>
+                                        <Button className='w-full'><span>Go back to Store</span><ShoppingBag className='ml-[5px]' /></Button>
+                                    </Link>
+                                </section>
+                            </>
                         ) : (
                             <Card>
                                 <CardHeader>
@@ -134,17 +167,22 @@ export default function ShoppingCart() {
                                 <Separator />
                                 <div className="flex justify-between font-medium">
                                     <span>Total</span>
-                                    <span>{total} MC</span>
+                                    <span>{total.toFixed(2)} MC</span>
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button
-                                    className="w-full"
-                                    size="lg"
-                                    disabled={cartItems.length === 0}
-                                >
-                                    Proceed to Checkout
-                                </Button>
+                                <Link to='/checkout' className='w-full'>
+                                    <Button
+                                        className="w-full disabled:bg-primary"
+                                        size="lg"
+                                        disabled={cartItems.length === 0}
+                                    >
+                                        {
+                                            cartItems.length === 0 ? 'No items in cart...' :
+                                                'Proceed to Checkout'
+                                        }
+                                    </Button>
+                                </Link>
                             </CardFooter>
                         </Card>
                         <Card>
@@ -153,9 +191,17 @@ export default function ShoppingCart() {
                             </CardHeader>
                             <CardContent className="grid gap-4">
                                 <div className="flex space-x-2">
-                                    <Input placeholder="Enter code" />
-                                    <Button>Apply</Button>
+                                    <Input
+                                        value={promoCode}
+                                        onChange={(e) => setPromoCode(e.target.value)}
+                                        placeholder="Enter code"
+                                    />
+                                    <Button
+                                        type='button'
+                                        onClick={() => applyPromoCode()}
+                                    >Apply</Button>
                                 </div>
+                                <p>Weekly promo: <span className='underline underline-offset-2 cursor-pointer hover:text-red-500' onClick={() => setPromoCode('mahindra10')}>mahindra10</span></p>
                             </CardContent>
                         </Card>
                     </div>
