@@ -29,18 +29,20 @@ export default function Settings() {
                 </SubHeader.Wrapper>
             </SubHeader.Root>
 
-            <Tabs defaultValue="account" className="mt-3 space-y-4">
-                <TabsList className='h-auto flex-wrap'>
+            <section className='mx-auto container'>
+                <Tabs defaultValue="account" className="mt-3 space-y-4">
+                    <TabsList className='h-auto flex-wrap gap-2'>
+                        <List
+                            items={SETTINGS_TABS}
+                            render={({ text, value }, i) => <TabsTrigger key={i} value={value} className='hover:bg-background/80'>{text}</TabsTrigger>}
+                        />
+                    </TabsList>
                     <List
                         items={SETTINGS_TABS}
-                        render={({ text, value }, i) => <TabsTrigger key={i} value={value}>{text}</TabsTrigger>}
+                        render={({ value }, i) => <TabsContent key={i} value={value}>{settingsPages[value]}</TabsContent>}
                     />
-                </TabsList>
-                <List
-                    items={SETTINGS_TABS}
-                    render={({ value }, i) => <TabsContent key={i} value={value}>{settingsPages[value]}</TabsContent>}
-                />
-            </Tabs>
+                </Tabs>
+            </section>
         </ContentWrapper.Root>
     )
 }

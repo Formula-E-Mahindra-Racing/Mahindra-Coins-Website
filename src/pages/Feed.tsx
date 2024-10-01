@@ -50,6 +50,8 @@ const initialPosts: Post[] = [
     }
 ]
 
+let voteCounter = 0
+
 const initialPolls: Poll[] = [
     {
         id: 1,
@@ -59,7 +61,7 @@ const initialPolls: Poll[] = [
             { id: 2, text: "Lucas di Grassi", votes: 38 }
         ],
         totalVotes: 80,
-        coinsReward: 50
+        coinsReward: 2
     },
     {
         id: 2,
@@ -71,7 +73,7 @@ const initialPolls: Poll[] = [
             { id: 4, text: "Mug", votes: 15 }
         ],
         totalVotes: 90,
-        coinsReward: 30
+        coinsReward: 2
     }
 ]
 
@@ -116,7 +118,8 @@ export default function MahindraFeed() {
     }
 
     const handleVote = (pollId: number, optionId: number) => {
-        setPolls(polls.map(poll =>
+        voteCounter++
+        setPolls(initialPolls.map(poll =>
             poll.id === pollId ? {
                 ...poll,
                 options: poll.options.map(option =>
@@ -125,6 +128,8 @@ export default function MahindraFeed() {
                 totalVotes: poll.totalVotes + 1
             } : poll
         ))
+
+        if (voteCounter > 1) return
         handleMcs(2)
     }
 
@@ -191,7 +196,7 @@ export default function MahindraFeed() {
                                 <p className="text-sm text-muted-foreground">Vote and earn Mahindra Coins!</p>
                             </CardHeader>
                             <CardContent className="space-y-4">
-                                {polls.map((poll) => (
+                                {polls.map((poll, i) => (
                                     <div key={poll.id} className="space-y-2">
                                         <h3 className="font-medium">{poll.question}</h3>
                                         {poll.options.map((option) => (
@@ -208,7 +213,11 @@ export default function MahindraFeed() {
                                         <p className="text-sm text-muted-foreground">
                                             {poll.totalVotes} votes • Earn {poll.coinsReward} MC
                                         </p>
-                                        <Separator className="my-2" />
+                                        {i === 0 &&
+                                            <Separator className="my-2 relative">
+                                                <span className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'>or</span>
+                                            </Separator>
+                                        }
                                     </div>
                                 ))}
                             </CardContent>

@@ -65,7 +65,7 @@ export default function User() {
                 </SubHeader.Wrapper>
             </SubHeader.Root>
 
-            <section className="mt-4 grid gap-6 lg:grid-cols-[1fr_300px]">
+            <section className="container mx-auto mt-4 grid gap-6 lg:grid-cols-[1fr_300px]">
                 <section className="space-y-6">
                     <Card>
                         <CardHeader className="flex flex-row items-center gap-4">

@@ -43,14 +43,10 @@ export default function Checkout() {
     const shipping = cartItems.length > 0 ? 50 : 0
     const total = subtotal + shipping
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        setShowRatingModal(true)
-    }
-
     const handleRatingSubmit = () => {
         localStorage.removeItem('cart')
         setShowRatingModal(false)
+        navigate('/store')
     }
 
     const { setWallet } = useContext(MahindraCoinsContext)
@@ -65,7 +61,7 @@ export default function Checkout() {
 
     const finishPurchase = () => {
         handleMcs(-total)
-        navigate('/shopping-cart')
+        setShowRatingModal(true)
     }
 
     return (
@@ -77,7 +73,7 @@ export default function Checkout() {
                         <CardDescription>Complete your order</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <form onSubmit={handleSubmit}>
+                        <form>
                             <section className="grid gap-6 lg:grid-cols-2">
                                 <section>
                                     <h3 className="text-lg font-semibold mb-4">Shipping Information</h3>
@@ -156,7 +152,7 @@ export default function Checkout() {
                                             <Button
                                                 className="w-full"
                                                 onClick={() => finishPurchase()}
-                                                type="submit"
+                                                type="button"
                                             >Place Order</Button>
                                         </CardFooter>
                                     </Card>
@@ -170,7 +166,7 @@ export default function Checkout() {
             <AlertDialog open={showRatingModal} onOpenChange={setShowRatingModal}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>Rate Your Experience</AlertDialogTitle>
+                        <AlertDialogTitle>Confirm Your Purchase</AlertDialogTitle>
                         <AlertDialogDescription>
                             Please rate your shopping experience from 1 to 5 stars.
                         </AlertDialogDescription>
@@ -185,7 +181,7 @@ export default function Checkout() {
                         ))}
                     </section>
                     <AlertDialogFooter>
-                        <AlertDialogAction onClick={handleRatingSubmit}>Submit Rating</AlertDialogAction>
+                        <AlertDialogAction onClick={handleRatingSubmit}>Confirm order!</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>

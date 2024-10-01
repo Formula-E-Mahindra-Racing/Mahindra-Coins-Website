@@ -8,6 +8,7 @@ import { SubHeader } from '@/components/sub-header/SubHeader'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useToast } from '@/hooks/use-toast'
+import { ToastAction } from '@/components/ui/toast'
 
 type CartItem = {
     id: number
@@ -88,8 +89,9 @@ export default function ShoppingCart() {
             if (total > JSON.parse(wallet)) {
                 toast({
                     title: "Sorry, you don't have enough MCs...",
-                    description: "You can earn them by interacting with other people and such",
-                    variant: 'destructive'
+                    description: "You can earn them by interacting with other people for example",
+                    variant: 'destructive',
+                    action: <Link to='/'><Button type='button'>Learn more</Button></Link>,
                 })
             }
             else {
@@ -195,18 +197,17 @@ export default function ShoppingCart() {
                                 </section>
                             </CardContent>
                             <CardFooter>
-                                <Link to='/checkout' className='w-full'>
-                                    <Button
-                                        className="w-full disabled:bg-primary"
-                                        size="lg"
-                                        disabled={cartItems.length === 0}
-                                    >
-                                        {
-                                            cartItems.length === 0 ? 'No items in cart...' :
-                                                'Proceed to Checkout'
-                                        }
-                                    </Button>
-                                </Link>
+                                <Button
+                                    className="w-full disabled:bg-primary"
+                                    size="lg"
+                                    disabled={cartItems.length === 0}
+                                    onClick={() => finishCheckout()}
+                                >
+                                    {
+                                        cartItems.length === 0 ? 'No items in cart...' :
+                                            'Proceed to Checkout'
+                                    }
+                                </Button>
                             </CardFooter>
                         </Card>
                         <Card>

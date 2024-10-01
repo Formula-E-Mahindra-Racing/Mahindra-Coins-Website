@@ -147,7 +147,7 @@ export default function Store() {
                 </SubHeader.Wrapper>
             </SubHeader.Root>
 
-            <main className="flex-1">
+            <main className="flex-1 container mx-auto">
                 <section className="w-full py-12">
                     <section className="mx-auto max-w-screen-2xl">
                         <section className="w-full">
