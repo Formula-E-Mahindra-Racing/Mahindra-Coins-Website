@@ -8,7 +8,6 @@ import { SubHeader } from '@/components/sub-header/SubHeader'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useToast } from '@/hooks/use-toast'
-import { ToastAction } from '@/components/ui/toast'
 
 type CartItem = {
     id: number
@@ -51,6 +50,7 @@ export default function ShoppingCart() {
         setTotal(prev => {
             if (promoCode.toLowerCase() === 'mahindra10')
                 prev = (prev - (prev * .1))
+            localStorage.setItem('total', JSON.stringify(prev.toFixed(2)))
             return prev
         })
     }

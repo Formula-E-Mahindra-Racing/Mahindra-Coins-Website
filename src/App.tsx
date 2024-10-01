@@ -4,17 +4,12 @@ import { Footer } from "./components/Footer"
 import Header from "./components/Header"
 import { useMount } from "./hooks/useMount"
 import { Toaster } from "@/components/ui/toaster"
-import { MahindraCoinsContext } from "./contexts/MahindraCoinsContext"
-import { useContext } from "react"
 
 function App() {
-
-    const { wallet, setWallet } = useContext(MahindraCoinsContext)
 
     useMount(() => {
         const wallet = localStorage.getItem('wallet')
         if (!wallet || JSON.parse(wallet) <= 0) localStorage.setItem('wallet', JSON.stringify(1400))
-setWallet
     })
 
     return (

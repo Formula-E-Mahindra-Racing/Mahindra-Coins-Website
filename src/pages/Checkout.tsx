@@ -1,14 +1,14 @@
-import { useState, useEffect, FormEvent, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
 import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 import { Star } from "lucide-react"
 import { useNavigate } from 'react-router-dom'
 import { MahindraCoinsContext } from '@/contexts/MahindraCoinsContext'
+import { useMount } from '@/hooks/useMount'
 
 type CartItem = {
     id: number
@@ -19,7 +19,7 @@ type CartItem = {
 }
 
 export default function Checkout() {
-    const [cartItems, setCartItems] = useState<CartItem[]>([])
+    const [, setCartItems] = useState<CartItem[]>([])
     const [showRatingModal, setShowRatingModal] = useState(false)
     const [rating, setRating] = useState(0)
 
@@ -39,9 +39,9 @@ export default function Checkout() {
         }
     }, [])
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-    const shipping = cartItems.length > 0 ? 50 : 0
-    const total = subtotal + shipping
+    // const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    // const shipping = cartItems.length > 0 ? 50 : 0
+    // const total = subtotal + shipping
 
     const handleRatingSubmit = () => {
         localStorage.removeItem('cart')
@@ -63,6 +63,14 @@ export default function Checkout() {
         handleMcs(-total)
         setShowRatingModal(true)
     }
+
+    const [total, setTotal] = useState('-')
+
+    useMount(() => {
+        let total = localStorage.getItem('total')
+        if (!total) total = '-'
+        setTotal(JSON.parse(total))
+    })
 
     return (
         <section className="bg-background min-h-screen py-8">
@@ -126,28 +134,34 @@ export default function Checkout() {
                                         <CardHeader>
                                             <CardTitle>Order Summary</CardTitle>
                                         </CardHeader>
-                                        <CardContent className="space-y-4">
-                                            {cartItems.map((item) => (
-                                                <section key={item.id} className="flex justify-between">
-                                                    <span>{item.name} (x{item.quantity})</span>
-                                                    <span>{item.price * item.quantity} MC</span>
+                                        {
+                                            <CardContent className="space-y-4">
+                                                {
+                                                    // cartItems.map((item) => (
+                                                    // <section key={item.id} className="flex justify-between">
+                                                    //     <span>{item.name} (x{item.quantity})</span>
+                                                    //     <span>{item.price * item.quantity} MC</span>
+                                                    // </section>
+                                                    // ))
+                                                }
+                                                {
+                                                    //<Separator />
+                                                    // <section className="flex justify-between">
+                                                    //     <span>Subtotal</span>
+                                                    //     <span>{subtotal} MC</span>
+                                                    // </section>
+                                                    // <section className="flex justify-between">
+                                                    //     <span>Shipping</span>
+                                                    //     <span>{shipping} MC</span>
+                                                    // </section>
+                                                    // <Separator />
+                                                }
+                                                <section className="flex justify-between font-semibold">
+                                                    <span>Total</span>
+                                                    <span>{total} MC</span>
                                                 </section>
-                                            ))}
-                                            <Separator />
-                                            <section className="flex justify-between">
-                                                <span>Subtotal</span>
-                                                <span>{subtotal} MC</span>
-                                            </section>
-                                            <section className="flex justify-between">
-                                                <span>Shipping</span>
-                                                <span>{shipping} MC</span>
-                                            </section>
-                                            <Separator />
-                                            <section className="flex justify-between font-semibold">
-                                                <span>Total</span>
-                                                <span>{total} MC</span>
-                                            </section>
-                                        </CardContent>
+                                            </CardContent>
+                                        }
                                         <CardFooter>
                                             <Button
                                                 className="w-full"
