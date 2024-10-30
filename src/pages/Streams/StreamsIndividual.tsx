@@ -96,7 +96,7 @@ export default function StreamsIndividual() {
 
     return (
         <>
-            <div className="container mx-auto p-4">
+            <div className="mb-20 container mx-auto p-4">
                 <div className='w-full flex justify-end'>
                     <Link to="/streams" className="hover:underline mb-4 inline-block">&larr; Back to streams</Link>
                 </div>
@@ -122,7 +122,7 @@ export default function StreamsIndividual() {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="flex flex-wrap gap-4 items-center justify-between mb-4">
                             <div className="flex items-center space-x-4">
                                 <Avatar className="h-12 w-12">
                                     <AvatarImage src={`/placeholder.svg?text=${stream.streamer.charAt(0)}`} />

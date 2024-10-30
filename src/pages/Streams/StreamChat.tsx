@@ -37,6 +37,7 @@ const StreamChat = () => {
     const [autoScroll, setAutoScroll] = useState(true);
 
     const scrollToBottom = () => {
+        if(window.innerWidth < 1024) return
         if (autoScroll && messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
