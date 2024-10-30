@@ -14,6 +14,8 @@ import Settings from '@/pages/Settings/Settings'
 import User from '@/pages/User'
 import Checkout from '@/pages/Checkout'
 import { MahindraCoinsProvider } from '@/contexts/MahindraCoinsContext'
+import Streams from '@/pages/Streams/Streams'
+import StreamsIndividual from '@/pages/Streams/StreamsIndividual'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
     const { isAuthenticated } = useAuth()
@@ -44,6 +46,8 @@ export default function DefaultLayout() {
                             <Route path='/settings' element={<Settings />} />
                             <Route path='/user' element={<User />} />
                             <Route path='/checkout' element={<Checkout />} />
+                            <Route path='/streams' element={<Streams />} />
+                            <Route path='/streams/:id' element={<StreamsIndividual />} />
                         </Route>
                         <Route path='*' element={<NotFound />} />
                     </Routes>

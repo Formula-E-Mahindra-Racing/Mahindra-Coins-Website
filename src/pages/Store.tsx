@@ -153,7 +153,7 @@ export default function Store() {
                         <section className="w-full">
                             <section className="flex flex-wrap gap-3 justify-between items-center mb-6">
                                 <Select onValueChange={(value) => setFilter(value)}>
-                                    <SelectTrigger className="w-fullsm:w-[180px]">
+                                    <SelectTrigger className="w-full sm:w-[180px]">
                                         <SelectValue placeholder="Filter by category" />
                                     </SelectTrigger>
                                     <SelectContent>
