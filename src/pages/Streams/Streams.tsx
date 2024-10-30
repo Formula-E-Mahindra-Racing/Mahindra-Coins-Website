@@ -22,8 +22,10 @@ import stream17 from "../../assets/streams/stream17.jpeg";
 import stream18 from "../../assets/streams/stream18.jpeg";
 import stream19 from "../../assets/streams/stream19.jpeg";
 import stream20 from "../../assets/streams/stream20.jpeg";
+
 import { ContentWrapper } from "@/components/content-wrapper/ContentWrapper";
 import { SubHeader } from "@/components/sub-header/SubHeader";
+import { Play } from "lucide-react";
 
 const streams = [
     { id: 1, title: "Formula E Qualifiers", streamer: "Jake Dennis", viewers: 23000, category: "Formula E", image: stream8 },
