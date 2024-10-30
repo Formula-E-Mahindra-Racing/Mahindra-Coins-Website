@@ -95,6 +95,7 @@ export default function ShoppingCart() {
                 })
             }
             else {
+                localStorage.setItem('total', String(total))
                 navigate('/checkout')
             }
     }

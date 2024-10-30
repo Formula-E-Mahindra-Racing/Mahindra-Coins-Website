@@ -9,6 +9,7 @@ import { Star } from "lucide-react"
 import { useNavigate } from 'react-router-dom'
 import { MahindraCoinsContext } from '@/contexts/MahindraCoinsContext'
 import { useMount } from '@/hooks/useMount'
+import { useEffectNoMount } from '@/hooks/useEffectNoMount'
 
 type CartItem = {
     id: number
@@ -22,6 +23,7 @@ export default function Checkout() {
     const [, setCartItems] = useState<CartItem[]>([])
     const [showRatingModal, setShowRatingModal] = useState(false)
     const [rating, setRating] = useState(0)
+    const [didBuy, setDidBuy] = useState(false)
 
     const navigate = useNavigate()
 
@@ -60,7 +62,9 @@ export default function Checkout() {
     }
 
     const finishPurchase = () => {
+        setDidBuy(true)
         handleMcs(-total)
+        localStorage.setItem('cart', String([]))
         setShowRatingModal(true)
     }
 
@@ -71,6 +75,12 @@ export default function Checkout() {
         if (!total) total = '-'
         setTotal(JSON.parse(total))
     })
+
+    useEffectNoMount(() => {
+        if(didBuy && !showRatingModal){
+            navigate('/')
+        }
+    }, [showRatingModal])
 
     return (
         <section className="bg-background min-h-screen py-8">
@@ -180,7 +190,7 @@ export default function Checkout() {
             <AlertDialog open={showRatingModal} onOpenChange={setShowRatingModal}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>Confirm Your Purchase</AlertDialogTitle>
+                        <AlertDialogTitle>Please Rate us!</AlertDialogTitle>
                         <AlertDialogDescription>
                             Please rate your shopping experience from 1 to 5 stars.
                         </AlertDialogDescription>
@@ -195,7 +205,7 @@ export default function Checkout() {
                         ))}
                     </section>
                     <AlertDialogFooter>
-                        <AlertDialogAction onClick={handleRatingSubmit}>Confirm order!</AlertDialogAction>
+                        <AlertDialogAction onClick={handleRatingSubmit}>Rate</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
