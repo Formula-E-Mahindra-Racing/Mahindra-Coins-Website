@@ -28,7 +28,7 @@ export default function Home() {
                                     </p>
                                 </section>
                                 <section className="flex flex-col gap-3 min-[400px]:flex-row">
-                                    <Link to='/feed'><Button size="lg">Get Started</Button></Link>
+                                    <Button size="lg"><Link to='/feed'>Get Started</Link></Button>
                                     <Button size="lg" variant="outline">
                                         Learn More
                                     </Button>

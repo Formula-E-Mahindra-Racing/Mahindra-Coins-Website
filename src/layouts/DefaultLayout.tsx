@@ -1,10 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
-import { AuthProvider } from '@/contexts/LoginContext'
-import { ReactNode } from 'react'
-import { useAuth } from '@/hooks/useAuth'
-import { Login } from '@/pages/Login'
-import App from '@/App'
-import { SignUp } from '@/pages/SignUp'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from '@/pages/Home'
 import Store from '@/pages/Store'
 import Feed from '@/pages/Feed'
@@ -16,43 +10,30 @@ import Checkout from '@/pages/Checkout'
 import { MahindraCoinsProvider } from '@/contexts/MahindraCoinsContext'
 import Streams from '@/pages/Streams/Streams'
 import StreamsIndividual from '@/pages/Streams/StreamsIndividual'
-
-function ProtectedRoute({ children }: { children: ReactNode }) {
-    const { isAuthenticated } = useAuth()
-    return isAuthenticated ? children : <Navigate to='/login' />
-}
+import App from '@/App'
 
 export default function DefaultLayout() {
-
     return (
         <Router>
-            <AuthProvider>
-                <MahindraCoinsProvider>
-                    <Routes>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/sign-up" element={<SignUp />} />
-                        <Route
-                            path="/"
-                            element={
-                                <ProtectedRoute>
-                                    <App />
-                                </ProtectedRoute>
-                            }
-                        >
-                            <Route index path='/' element={<Home />} />
-                            <Route path='/store' element={<Store />} />
-                            <Route path='/feed' element={<Feed />} />
-                            <Route path='/shopping-cart' element={<ShoppingCart />} />
-                            <Route path='/settings' element={<Settings />} />
-                            <Route path='/user' element={<User />} />
-                            <Route path='/checkout' element={<Checkout />} />
-                            <Route path='/streams' element={<Streams />} />
-                            <Route path='/streams/:id' element={<StreamsIndividual />} />
-                        </Route>
+            <MahindraCoinsProvider>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<App />}
+                    >
+                        <Route index path='/' element={<Home />} />
+                        <Route path='/store' element={<Store />} />
+                        <Route path='/feed' element={<Feed />} />
+                        <Route path='/shopping-cart' element={<ShoppingCart />} />
+                        <Route path='/settings' element={<Settings />} />
+                        <Route path='/user' element={<User />} />
+                        <Route path='/checkout' element={<Checkout />} />
+                        <Route path='/streams' element={<Streams />} />
+                        <Route path='/streams/:id' element={<StreamsIndividual />} />
                         <Route path='*' element={<NotFound />} />
-                    </Routes>
-                </MahindraCoinsProvider>
-            </AuthProvider>
+                    </Route>
+                </Routes>
+            </MahindraCoinsProvider>
         </Router>
     )
 }

@@ -96,7 +96,7 @@ export default function StreamsIndividual() {
 
     return (
         <>
-            <div className="mb-20 container mx-auto p-4">
+            <div className="mb-20 container mx-auto p-4 min-w-[320px]">
                 <div className='w-full flex justify-end'>
                     <Link to="/streams" className="hover:underline mb-4 inline-block">&larr; Back to streams</Link>
                 </div>
